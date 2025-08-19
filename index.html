@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<!--
+TO USE THIS WEBSITE WITH YOUR IMAGES:
+Save these images to the same folder as this HTML file:
+
+MAIN IMAGES:
+1. deticktor-logo.png - Your professional DeTicktor logo (from Image 1)
+2. lab-testing-setup.jpg - The lab photo with blue gloves and equipment (from Image 2)  
+3. cornell-award-ceremony.jpg - Team photo with Cornell award banner (from Image 3)
+4. team-selfie-hackathon.jpg - Team selfie in front of whiteboard (from Image 4)
+
+DEMO DAY IMAGES (add when available):
+5. demo-presentation.jpg - Your demo day presentation photos
+6. demo-networking.jpg - Networking session photos
+7. demo-showcase.jpg - Innovation showcase images
+
+FEATURES INCLUDED:
+✅ Cornell Hackathon Newsletter PDF link
+✅ YouTube pitch video embedded
+✅ Substack link placeholder (ready to add)
+✅ Z Fellow video placeholder (ready to add)
+✅ Separate Demo Day gallery page
+✅ Comprehensive Resources section
+✅ All links organized in one place
+
+The website will automatically use these images when available, with fallbacks if not found.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeTicktor - Your Tick Detection Tool for Pets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        /* Fallback logo styling if image not available */
+        .logo-text {
+            color: #4a9eff;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .logo-highlight {
+            background: #4ade80;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 50px;
+            margin: 0 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #666;
+            font-weight: 400;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #333;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: #333;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            background: #ffffff;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 64px;
+            font-weight: 400;
+            color: #333;
+            line-height: 1.1;
+            margin-bottom: 30px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #6b7280;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 400;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: #4b5563;
+        }
+
+        .hero-image {
+            text-align: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 400;
+            color: #333;
+            text-align: center;
+            margin-bottom: 60px;
+            line-height: 1.2;
+        }
+
+        /* Team Section */
+        .team {
+            background: #ffffff;
+            text-align: center;
+        }
+
+        .team-content {
+            margin-bottom: 40px;
+        }
+
+        .team-description {
+            font-size: 18px;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+
+        .team-names {
+            font-size: 16px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .team-image {
+            margin: 40px 0;
+        }
+
+        .team-image img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 12px;
+        }
+
+        /* Milestones Section */
+        .milestones {
+            background: #ffffff;
+        }
+
+        .milestone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .milestone-item {
+            text-align: center;
+        }
+
+        .milestone-image {
+            width: 100%;
+            height: 300px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .milestone-title {
+            font-size: 16px;
+            color: #333;
+            font-weight: 400;
+        }
+
+        /* Video Section */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+
+        /* Resources Section */
+        .resources {
+            background: #f9fafb;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .resource-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .resource-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .resource-card h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .resource-card p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .resource-link {
+            display: inline-block;
+            background: #6b7280;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .resource-link:hover {
+            background: #4b5563;
+        }
+
+        .resource-link.primary {
+            background: #4ade80;
+        }
+
+        .resource-link.primary:hover {
+            background: #22c55e;
+        }
+
+        /* Demo Day Section */
+        .demo-day {
+            background: #ffffff;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .demo-item {
+            text-align: center;
+        }
+
+        .demo-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .demo-caption {
+            font-size: 16px;
+            color: #333;
+            font-weight: 400;
+        }
+        .gallery {
+            background: #ffffff;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .gallery-caption {
+            font-size: 16px;
+            color: #333;
+            font-weight: 400;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #ffffff;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-content h2 {
+            font-size: 48px;
+            font-weight: 400;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .contact-content p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        .contact-info {
+            background: #f9fafb;
+            padding: 40px;
+            border-radius: 12px;
+        }
+
+        .contact-section {
+            margin-bottom: 30px;
+        }
+
+        .contact-section h3 {
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-button {
+            display: inline-block;
+            background: #6b7280;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background: #4b5563;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .footer-logo {
+            width: 24px;
+            height: 24px;
+            background: #6b7280;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 40px 0;
+                gap: 20px;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero-content h1 {
+                font-size: 40px;
+            }
+
+            .hero-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .section-title,
+            .contact-content h2 {
+                font-size: 32px;
+            }
+
+            .milestone-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .resources-grid,
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Image placeholders for demo */
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            background: #f3f4f6;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="logo">
+                <!-- Replace 'deticktor-logo.png' with your actual logo file -->
+                <img src="deticktor-logo.png" alt="DeTicktor Logo" class="logo-img">
+                <!-- Fallback text logo if image doesn't load -->
+                <span class="logo-text" style="display: none;">de</span><span class="logo-highlight" style="display: none;">TICK</span><span class="logo-text" style="display: none;">tor</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#story" class="nav-link">Our Story</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#milestones" class="nav-link">Milestones</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#demo-day" class="nav-link">Demo Day</a></li>
+                <li><a href="#resources" class="nav-link">Resources</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>Detect ticks early. Protect your pet's health.</h1>
+                    <p>Early tick detection tool designed for shelters, pet owners, and vets, because your furry friend deserves quick, painless protection.</p>
+                    <a href="#story" class="cta-button">Join our Early Access List!</a>
+                </div>
+                <div class="hero-image">
+                    <!-- Replace with your actual hero image -->
+                    <img src="lab-testing-setup.jpg" alt="DeTicktor Lab Testing Setup" style="width: 100%; max-width: 500px; border-radius: 12px;">
+                    <!-- Fallback placeholder -->
+                    <!-- <div class="image-placeholder">🐕</div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="story" class="section team">
+        <div class="container">
+            <h2 class="section-title">See the team in action!</h2>
+            <div class="team-content">
+                <p class="team-description">From brainstorming at whiteboards to building prototypes, every step we take is driven by our love for animals and our commitment to safer, smarter care.</p>
+                <p class="team-names">L to R: Vivian Hu, Ehlaam Imran, Sahana Kakarla, Amy Salim, Nilabha Mukherjee</p>
+            </div>
+            <div class="team-image">
+                <!-- Replace with your actual team photo -->
+                <img src="team-selfie-hackathon.jpg" alt="DeTicktor Team at Cornell Hackathon" style="width: 100%; max-width: 600px; border-radius: 12px;">
+                <!-- Fallback placeholder -->
+                <!-- <div class="image-placeholder">👥</div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h2 style="font-size: 48px; margin-bottom: 30px;">About DeTicktor</h2>
+                    <p>DeTicktor is an innovative early detection system specifically designed to identify ticks on pets before they become a serious health threat. Our technology serves veterinarians, animal shelters, and pet owners who want the best protection for their beloved companions.</p>
+                    <p>Winning the Animal Health Hackathon at Cornell in February 2025, our solution represents the cutting edge of pet health technology, combining advanced detection methods with user-friendly design.</p>
+                </div>
+                <div class="hero-image">
+                    <!-- Replace with your Cornell award photo -->
+                    <img src="cornell-award-ceremony.jpg" alt="DeTicktor Team Winning Cornell Animal Health Hackathon" style="width: 100%; max-width: 500px; border-radius: 12px;">
+                    <!-- Fallback placeholder -->
+                    <!-- <div class="image-placeholder">🏆</div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestones Section -->
+    <section id="milestones" class="section milestones">
+        <div class="container">
+            <h2 class="section-title">Milestones & Media</h2>
+            <div class="milestone-grid">
+                <div class="milestone-item">
+                    <!-- Cornell Hackathon Victory -->
+                    <img src="cornell-award-ceremony.jpg" alt="Cornell Hackathon Award" class="milestone-image">
+                    <div class="milestone-title">Winning the Animal Health Hackathon at Cornell, Feb 2025</div>
+                </div>
+                <div class="milestone-item">
+                    <!-- Live tick testing -->
+                    <img src="lab-testing-setup.jpg" alt="Live Tick Testing" class="milestone-image">
+                    <div class="milestone-title">Getting live ticks delivered for testing, June 2025</div>
+                </div>
+                <div class="milestone-item">
+                    <!-- Hackathon preparation -->
+                    <img src="team-selfie-hackathon.jpg" alt="Hackathon Preparation" class="milestone-image">
+                    <div class="milestone-title">Preparing for the Hackathon, Feb 2025</div>
+                </div>
+                <div class="milestone-item">
+                    <!-- Logo/branding development -->
+                    <img src="deticktor-logo.png" alt="Product Development" class="milestone-image">
+                    <div class="milestone-title">Product Development Phase</div>
+                </div>
+                <div class="milestone-item">
+                    <div class="image-placeholder">🔬</div>
+                    <div class="milestone-title">Research & Testing</div>
+                </div>
+                <div class="milestone-item">
+                    <div class="image-placeholder">🚀</div>
+                    <div class="milestone-title">Upcoming Beta Launch</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section gallery">
+        <div class="container">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <!-- Use image of Simba from original site -->
+                    <div class="image-placeholder">🐕</div>
+                    <div class="gallery-caption">Simba!</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="team-selfie-hackathon.jpg" alt="Team Collaboration" class="gallery-image">
+                    <div class="gallery-caption">Team Collaboration</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="cornell-award-ceremony.jpg" alt="Cornell Hackathon Presentation" class="gallery-image">
+                    <div class="gallery-caption">Cornell Hackathon Presentation</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="lab-testing-setup.jpg" alt="Live Tick Testing" class="gallery-image">
+                    <div class="gallery-caption">Live Tick Testing</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Day Section -->
+    <section id="demo-day" class="section demo-day">
+        <div class="container">
+            <h2 class="section-title">Demo Day</h2>
+            <p class="section-subtitle" style="text-align: center; font-size: 18px; color: #666; max-width: 600px; margin: 0 auto 40px;">
+                Highlights from our presentation and demo sessions
+            </p>
+            <div class="demo-grid">
+                <div class="demo-item">
+                    <div class="image-placeholder" style="height: 200px;">📊</div>
+                    <div class="demo-caption">Pitch Presentation</div>
+                </div>
+                <div class="demo-item">
+                    <div class="image-placeholder" style="height: 200px;">🎯</div>
+                    <div class="demo-caption">Product Demo</div>
+                </div>
+                <div class="demo-item">
+                    <div class="image-placeholder" style="height: 200px;">👥</div>
+                    <div class="demo-caption">Team Presentation</div>
+                </div>
+                <div class="demo-item">
+                    <div class="image-placeholder" style="height: 200px;">🏆</div>
+                    <div class="demo-caption">Award Ceremony</div>
+                </div>
+                <div class="demo-item">
+                    <div class="image-placeholder" style="height: 200px;">🤝</div>
+                    <div class="demo-caption">Networking</div>
+                </div>
+                <div class="demo-item">
+                    <div class="image-placeholder" style="height: 200px;">💡</div>
+                    <div class="demo-caption">Innovation Showcase</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="section resources">
+        <div class="container">
+            <h2 class="section-title">Resources & Links</h2>
+            <p class="section-subtitle" style="text-align: center; font-size: 18px; color: #666; max-width: 600px; margin: 0 auto 40px;">
+                Access our publications, videos, and important documents
+            </p>
+            
+            <!-- Featured Video -->
+            <div style="max-width: 800px; margin: 0 auto 60px;">
+                <h3 style="text-align: center; font-size: 24px; color: #333; margin-bottom: 20px;">Cornell Animal Health Hackathon Pitch</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/mNkb_PQHE-g" 
+                            title="DeTicktor Cornell Hackathon Pitch" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📰</div>
+                    <h3>Cornell Hackathon Newsletter</h3>
+                    <p>Read about our victory and the innovative solutions presented at the Animal Health Hackathon</p>
+                    <a href="https://hackathon.cornell.edu/_files/ugd/cd042f_a73aeba2ae614e51bf27b3cb329363ee.pdf" 
+                       target="_blank" class="resource-link primary">Read Newsletter</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">🎥</div>
+                    <h3>Pitch Video</h3>
+                    <p>Watch our winning presentation from the Cornell Animal Health Hackathon</p>
+                    <a href="https://m.youtube.com/watch?v=mNkb_PQHE-g" 
+                       target="_blank" class="resource-link">Watch Video</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">📝</div>
+                    <h3>Substack Publication</h3>
+                    <p>Follow our journey and insights on animal health innovation</p>
+                    <a href="#" class="resource-link">Read Articles</a>
+                    <p style="font-size: 12px; color: #999; margin-top: 10px;">Link coming soon</p>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">🎯</div>
+                    <h3>Z Fellow Video</h3>
+                    <p>Our fellowship journey and impact in the startup ecosystem</p>
+                    <a href="#" class="resource-link">Watch Video</a>
+                    <p style="font-size: 12px; color: #999; margin-top: 10px;">Coming soon</p>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">🏫</div>
+                    <h3>Cornell Animal Health</h3>
+                    <p>Learn more about the hackathon that launched our journey</p>
+                    <a href="https://hackathon.cornell.edu/" 
+                       target="_blank" class="resource-link">Visit Site</a>
+                </div>
+                
+                <div class="resource-card">
+                    <div class="resource-icon">📧</div>
+                    <h3>Early Access List</h3>
+                    <p>Be the first to know when DeTicktor becomes available</p>
+                    <a href="#contact" class="resource-link primary">Join Waitlist</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-content">
+                    <h2>Get In Touch</h2>
+                    <p>Have a question? Ready to learn more about DeTicktor?</p>
+                    
+                    <div class="contact-info">
+                        <div class="contact-section">
+                            <h3>📧 Email us</h3>
+                            <a href="mailto:hello@deticktor.com" class="contact-button">✉ Email</a>
+                        </div>
+                        
+                        <div class="contact-section">
+                            <h3>📍 Visit us</h3>
+                            <a href="#" class="contact-button">↗ Get Directions</a>
+                        </div>
+                        
+                        <div class="contact-section">
+                            <h3>🚀 Early Access</h3>
+                            <p style="font-size: 14px; color: #666; margin-top: 5px;">Join our waitlist to be the first to try DeTicktor when it launches.</p>
+                        </div>
+                        
+                        <div class="contact-section">
+                            <h3>🏢 For Veterinarians & Shelters</h3>
+                            <p style="font-size: 14px; color: #666; margin-top: 5px;">Professional partnerships and bulk licensing opportunities available.</p>
+                        </div>
+                        
+                        <div class="contact-section">
+                            <h3>🐾 For Pet Owners</h3>
+                            <p style="font-size: 14px; color: #666; margin-top: 5px;">Early access notifications and product updates for individual users.</p>
+                        </div>
+
+                        <div class="contact-section">
+                            <h3>📺 Media & Press</h3>
+                            <p style="font-size: 14px; color: #666; margin-top: 5px;">Interview requests and media inquiries welcome.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="map-container">
+                        <div class="map-placeholder">🗺️ Interactive Map Location</div>
+                        <!-- Replace with actual map embed -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">🐾</div>
+        <span>DeTicktor</span>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Logo fallback handling
+        const logoImg = document.querySelector('.logo-img');
+        const logoFallback = document.querySelectorAll('.logo-text, .logo-highlight');
+        
+        if (logoImg) {
+            logoImg.onerror = function() {
+                this.style.display = 'none';
+                logoFallback.forEach(el => el.style.display = 'inline');
+            };
+        }
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
