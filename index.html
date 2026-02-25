@@ -1,938 +1,1465 @@
 <!DOCTYPE html>
-<!--
-TO USE THIS WEBSITE WITH YOUR IMAGES:
-Save these images to the same folder as this HTML file:
-
-MAIN IMAGES:
-1. deticktor-logo.png - Your professional DeTicktor logo (from Image 1)
-2. lab-testing-setup.jpg - The lab photo with blue gloves and equipment (from Image 2)  
-3. cornell-award-ceremony.jpg - Team photo with Cornell award banner (from Image 3)
-4. team-selfie-hackathon.jpg - Team selfie in front of whiteboard (from Image 4)
-
-DEMO DAY IMAGES (add when available):
-5. demo-presentation.jpg - Your demo day presentation photos
-6. demo-networking.jpg - Networking session photos
-7. demo-showcase.jpg - Innovation showcase images
-
-FEATURES INCLUDED:
-✅ Cornell Hackathon Newsletter PDF link
-✅ YouTube pitch video embedded
-✅ Substack link placeholder (ready to add)
-✅ Z Fellow video placeholder (ready to add)
-✅ Separate Demo Day gallery page
-✅ Comprehensive Resources section
-✅ All links organized in one place
-
-The website will automatically use these images when available, with fallbacks if not found.
--->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeTicktor - Your Tick Detection Tool for Pets</title>
+    <title>DeTICKtor — Detect to Protect</title>
+    <meta name="description" content="DeTICKtor is developing a non-invasive tick-detection device for animals, designed to help caregivers detect ticks earlier, faster, and more reliably than manual inspection.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ═══════════════════════════════════════
+           CSS VARIABLES & RESET
+           ═══════════════════════════════════════ */
+        :root {
+            --teal-900: #0a3d52;
+            --teal-800: #0d5068;
+            --teal-700: #11667f;
+            --teal-600: #167a96;
+            --teal-500: #1a8fad;
+            --teal-100: #e0f3f8;
+            --teal-50: #f0f9fb;
+            --green-500: #6db83a;
+            --green-400: #7bc142;
+            --green-300: #96d066;
+            --green-100: #e8f5dc;
+            --white: #ffffff;
+            --gray-50: #f8fafa;
+            --gray-100: #f0f2f3;
+            --gray-200: #dfe3e5;
+            --gray-400: #98a3a9;
+            --gray-600: #5a6970;
+            --gray-700: #3d4a50;
+            --gray-800: #2a3338;
+            --gray-900: #1a2024;
+
+            --font-display: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            --font-body: 'DM Sans', -apple-system, sans-serif;
+
+            --max-width: 1120px;
+            --section-pad: clamp(64px, 10vw, 120px);
+            --side-pad: clamp(20px, 5vw, 48px);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #ffffff;
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--gray-800);
+            background: var(--white);
         }
 
+        img { max-width: 100%; height: auto; display: block; }
+        a { color: inherit; }
+
+        /* ═══════════════════════════════════════
+           UTILITY
+           ═══════════════════════════════════════ */
         .container {
-            max-width: 1200px;
+            max-width: var(--max-width);
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 var(--side-pad);
         }
 
-        /* Navigation */
-        .navbar {
+        .section-label {
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--green-500);
+            margin-bottom: 16px;
+        }
+
+        .section-heading {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: clamp(28px, 4vw, 40px);
+            line-height: 1.25;
+            color: var(--teal-900);
+            margin-bottom: 20px;
+        }
+
+        .section-body {
+            font-size: 17px;
+            color: var(--gray-600);
+            max-width: 640px;
+        }
+
+        /* ═══════════════════════════════════════
+           ANIMATIONS
+           ═══════════════════════════════════════ */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ═══════════════════════════════════════
+           NAVIGATION
+           ═══════════════════════════════════════ */
+        .nav {
             position: fixed;
             top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 20px 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            transition: box-shadow 0.3s ease;
         }
 
-        .nav-container {
+        .nav.scrolled {
+            box-shadow: 0 1px 16px rgba(10, 61, 82, 0.08);
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--side-pad);
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
+            height: 68px;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .logo-img {
+        .nav-logo img {
             height: 40px;
             width: auto;
         }
 
-        /* Fallback logo styling if image not available */
-        .logo-text {
-            color: #4a9eff;
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        .logo-highlight {
-            background: #4ade80;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 50px;
-            margin: 0 2px;
-        }
-
-        .nav-menu {
+        .nav-links {
             display: flex;
-            list-style: none;
-            gap: 40px;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: #666;
-            font-weight: 400;
-            font-size: 16px;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #333;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background: #333;
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            background: #ffffff;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
             align-items: center;
+            gap: 32px;
+            list-style: none;
         }
 
-        .hero-content h1 {
-            font-size: 64px;
-            font-weight: 400;
-            color: #333;
-            line-height: 1.1;
-            margin-bottom: 30px;
-        }
-
-        .hero-content p {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: #6b7280;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 400;
+        .nav-links a {
             font-size: 14px;
-            transition: background 0.3s ease;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--gray-600);
+            transition: color 0.2s;
         }
 
-        .cta-button:hover {
-            background: #4b5563;
+        .nav-links a:hover { color: var(--teal-700); }
+
+        .nav-cta {
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            color: var(--white) !important;
+            background: var(--teal-700);
+            padding: 9px 20px;
+            border-radius: 8px;
+            transition: background 0.2s;
         }
 
-        .hero-image {
+        .nav-cta:hover { background: var(--teal-800) !important; }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--gray-800);
+            margin: 5px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* ═══════════════════════════════════════
+           HERO
+           ═══════════════════════════════════════ */
+        .hero {
+            padding: calc(68px + var(--section-pad)) var(--side-pad) var(--section-pad);
+            background: linear-gradient(175deg, var(--teal-50) 0%, var(--white) 60%);
             text-align: center;
-        }
-
-        .hero-image img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 12px;
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            font-size: 48px;
-            font-weight: 400;
-            color: #333;
-            text-align: center;
-            margin-bottom: 60px;
-            line-height: 1.2;
-        }
-
-        /* Team Section */
-        .team {
-            background: #ffffff;
-            text-align: center;
-        }
-
-        .team-content {
-            margin-bottom: 40px;
-        }
-
-        .team-description {
-            font-size: 18px;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto 20px;
-            line-height: 1.6;
-        }
-
-        .team-names {
-            font-size: 16px;
-            color: #666;
-            font-style: italic;
-        }
-
-        .team-image {
-            margin: 40px 0;
-        }
-
-        .team-image img {
-            width: 100%;
-            max-width: 600px;
-            border-radius: 12px;
-        }
-
-        /* Milestones Section */
-        .milestones {
-            background: #ffffff;
-        }
-
-        .milestone-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .milestone-item {
-            text-align: center;
-        }
-
-        .milestone-image {
-            width: 100%;
-            height: 300px;
-            border-radius: 12px;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-
-        .milestone-title {
-            font-size: 16px;
-            color: #333;
-            font-weight: 400;
-        }
-
-        /* Video Section */
-        .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
             overflow: hidden;
-            border-radius: 12px;
-            margin: 20px 0;
         }
 
-        .video-container iframe {
+        .hero::before {
+            content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 12px;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(123, 193, 66, 0.06) 0%, transparent 70%);
+            pointer-events: none;
         }
 
-        /* Resources Section */
-        .resources {
-            background: #f9fafb;
-        }
-
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .resource-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .resource-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .resource-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .resource-card h3 {
-            font-size: 20px;
-            color: #333;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .resource-card p {
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        .resource-link {
+        .hero-logo {
             display: inline-block;
-            background: #6b7280;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 14px;
-            transition: background 0.3s ease;
+            margin-bottom: 32px;
+            animation: fadeIn 0.8s ease both;
         }
 
-        .resource-link:hover {
-            background: #4b5563;
+        .hero-logo img {
+            height: clamp(80px, 12vw, 130px);
+            width: auto;
         }
 
-        .resource-link.primary {
-            background: #4ade80;
-        }
-
-        .resource-link.primary:hover {
-            background: #22c55e;
-        }
-
-        /* Demo Day Section */
-        .demo-day {
-            background: #ffffff;
-        }
-
-        .demo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .demo-item {
-            text-align: center;
-        }
-
-        .demo-image {
-            width: 100%;
-            height: 200px;
-            border-radius: 12px;
-            object-fit: cover;
-            margin-bottom: 15px;
-        }
-
-        .demo-caption {
-            font-size: 16px;
-            color: #333;
-            font-weight: 400;
-        }
-        .gallery {
-            background: #ffffff;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .gallery-item {
-            text-align: center;
-        }
-
-        .gallery-image {
-            width: 100%;
-            height: 250px;
-            border-radius: 12px;
-            object-fit: cover;
-            margin-bottom: 20px;
-        }
-
-        .gallery-caption {
-            font-size: 16px;
-            color: #333;
-            font-weight: 400;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: #ffffff;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .contact-content h2 {
-            font-size: 48px;
-            font-weight: 400;
-            color: #333;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .contact-content p {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 40px;
-        }
-
-        .contact-info {
-            background: #f9fafb;
-            padding: 40px;
-            border-radius: 12px;
-        }
-
-        .contact-section {
-            margin-bottom: 30px;
-        }
-
-        .contact-section h3 {
-            font-size: 16px;
-            color: #333;
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 5vw, 54px);
             font-weight: 600;
-            margin-bottom: 10px;
+            line-height: 1.2;
+            color: var(--teal-900);
+            margin-bottom: 20px;
+            animation: fadeUp 0.8s ease 0.15s both;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--green-500);
+        }
+
+        .hero-sub {
+            font-size: clamp(17px, 2vw, 20px);
+            color: var(--gray-600);
+            max-width: 580px;
+            margin: 0 auto 40px;
+            line-height: 1.65;
+            animation: fadeUp 0.8s ease 0.3s both;
+        }
+
+        .hero-cta-group {
             display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeUp 0.8s ease 0.45s both;
+        }
+
+        .btn-primary {
+            display: inline-flex;
             align-items: center;
             gap: 8px;
-        }
-
-        .contact-button {
-            display: inline-block;
-            background: #6b7280;
-            color: white;
-            padding: 10px 20px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--white);
+            background: var(--teal-700);
+            padding: 14px 28px;
+            border-radius: 10px;
             text-decoration: none;
-            border-radius: 6px;
-            font-size: 14px;
-            margin-top: 20px;
-            transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
         }
 
-        .contact-button:hover {
-            background: #4b5563;
+        .btn-primary:hover {
+            background: var(--teal-800);
+            transform: translateY(-1px);
         }
 
-        .map-container {
-            width: 100%;
-            height: 300px;
-            border-radius: 12px;
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--teal-700);
+            background: transparent;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            border: 1px solid var(--gray-200);
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--teal-700);
+            background: var(--teal-50);
+        }
+
+        /* ═══════════════════════════════════════
+           PROBLEM
+           ═══════════════════════════════════════ */
+        .problem {
+            padding: var(--section-pad) 0;
+            background: var(--white);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            margin-top: 48px;
+        }
+
+        .problem-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .problem-card {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-100);
+            border-radius: 14px;
+            padding: 28px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(10, 61, 82, 0.06);
+        }
+
+        .problem-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            font-size: 20px;
+        }
+
+        .problem-card h3 {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--teal-900);
+            margin-bottom: 8px;
+        }
+
+        .problem-card p {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        .problem-stat-block {
+            background: var(--teal-900);
+            border-radius: 20px;
+            padding: 48px;
+            color: var(--white);
+            position: relative;
             overflow: hidden;
-            margin-top: 20px;
         }
 
-        .map-placeholder {
-            width: 100%;
-            height: 100%;
-            background: #f3f4f6;
-            display: flex;
+        .problem-stat-block::after {
+            content: '';
+            position: absolute;
+            bottom: -60px;
+            right: -60px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(123, 193, 66, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .stat-item {
+            margin-bottom: 36px;
+        }
+
+        .stat-item:last-child { margin-bottom: 0; }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: clamp(36px, 5vw, 48px);
+            font-weight: 700;
+            color: var(--green-400);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.5;
+        }
+
+        /* ═══════════════════════════════════════
+           SOLUTION
+           ═══════════════════════════════════════ */
+        .solution {
+            padding: var(--section-pad) 0;
+            background: var(--teal-50);
+        }
+
+        .solution-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
             align-items: center;
-            justify-content: center;
-            color: #666;
-            font-size: 14px;
+            margin-top: 48px;
         }
 
-        /* Footer */
-        .footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 40px 0;
+        .solution-text p {
+            color: var(--gray-600);
+            margin-bottom: 24px;
+        }
+
+        .solution-text p:last-of-type { margin-bottom: 32px; }
+
+        .solution-features {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
         }
 
-        .footer-logo {
-            width: 24px;
-            height: 24px;
-            background: #6b7280;
+        .solution-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .feature-check {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            background: var(--green-100);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
+            margin-top: 2px;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 70px;
-                flex-direction: column;
-                background-color: white;
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-                padding: 40px 0;
-                gap: 20px;
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .hero-content h1 {
-                font-size: 40px;
-            }
-
-            .hero-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .section-title,
-            .contact-content h2 {
-                font-size: 32px;
-            }
-
-            .milestone-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .resources-grid,
-            .demo-grid {
-                grid-template-columns: 1fr;
-            }
+        .feature-check svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--green-500);
+            fill: none;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
-        /* Image placeholders for demo */
-        .image-placeholder {
+        .solution-feature span {
+            font-size: 16px;
+            color: var(--gray-700);
+            line-height: 1.5;
+        }
+
+        .solution-image-wrap {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 4px 32px rgba(10, 61, 82, 0.06);
+        }
+
+        .solution-image-wrap img {
+            border-radius: 12px;
             width: 100%;
-            height: 300px;
-            background: #f3f4f6;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .solution-image-caption {
+            text-align: center;
+            font-size: 13px;
+            color: var(--gray-400);
+            margin-top: 14px;
+        }
+
+        /* ═══════════════════════════════════════
+           WHO IT'S FOR
+           ═══════════════════════════════════════ */
+        .audience {
+            padding: var(--section-pad) 0;
+            background: var(--white);
+        }
+
+        .audience-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .audience-header .section-body {
+            margin: 0 auto;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .audience-card {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-100);
+            border-radius: 16px;
+            padding: 36px 28px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .audience-card:first-child {
+            border-color: var(--green-300);
+            background: var(--green-100);
+        }
+
+        .audience-card:first-child .audience-badge {
+            display: inline-block;
+        }
+
+        .audience-badge {
+            display: none;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--green-500);
+            background: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .audience-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(10, 61, 82, 0.07);
+        }
+
+        .audience-icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .audience-card h3 {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--teal-900);
+            margin-bottom: 10px;
+        }
+
+        .audience-card p {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* ═══════════════════════════════════════
+           OUR STORY / TIMELINE
+           ═══════════════════════════════════════ */
+        .story {
+            padding: var(--section-pad) 0;
+            background: var(--teal-900);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at 20% 80%, rgba(123, 193, 66, 0.07) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(26, 143, 173, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .story .section-label { color: var(--green-400); }
+        .story .section-heading { color: var(--white); }
+        .story .section-body { color: rgba(255, 255, 255, 0.7); }
+
+        .story-intro {
+            max-width: 640px;
+            margin-bottom: 56px;
+        }
+
+        .story-intro p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: rgba(123, 193, 66, 0.25);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 0;
+        }
+
+        .timeline-item:last-child { margin-bottom: 0; }
+
+        .timeline-dot {
+            position: absolute;
+            left: -40px;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--green-400);
+            border: 3px solid var(--teal-900);
+            box-shadow: 0 0 0 3px rgba(123, 193, 66, 0.25);
+        }
+
+        .timeline-item.future .timeline-dot {
+            background: transparent;
+            border-color: var(--green-400);
+        }
+
+        .timeline-date {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--green-400);
+            margin-bottom: 6px;
+        }
+
+        .timeline-title {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.65;
+            max-width: 520px;
+        }
+
+        .timeline-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 3px 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+        }
+
+        .badge-award {
+            background: rgba(123, 193, 66, 0.15);
+            color: var(--green-400);
+        }
+
+        .badge-upcoming {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ═══════════════════════════════════════
+           SLIDESHOW
+           ═══════════════════════════════════════ */
+        .slideshow {
+            position: relative;
+            margin-top: 56px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .slideshow-track {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 32px 24px 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        .slide-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 2;
+        }
+
+        .slide-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .slide-prev { left: 16px; }
+        .slide-next { right: 16px; }
+
+        .slide-dots {
+            position: absolute;
+            bottom: 56px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .slide-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.35);
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .slide-dot.active {
+            background: var(--white);
+            transform: scale(1.2);
+        }
+
+        /* ═══════════════════════════════════════
+           WHY IT MATTERS
+           ═══════════════════════════════════════ */
+        .impact {
+            padding: var(--section-pad) 0;
+            background: var(--white);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .impact-card {
+            padding: 32px;
+            border-radius: 16px;
+            background: var(--teal-50);
+            border: 1px solid var(--teal-100);
+        }
+
+        .impact-card h3 {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--teal-900);
+            margin-bottom: 10px;
+        }
+
+        .impact-card p {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.65;
+        }
+
+        .impact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--white);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
-            font-size: 48px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
+            font-size: 22px;
+            box-shadow: 0 2px 8px rgba(10, 61, 82, 0.06);
+        }
+
+        /* ═══════════════════════════════════════
+           CTA / WHERE WE ARE
+           ═══════════════════════════════════════ */
+        .cta-section {
+            padding: var(--section-pad) 0;
+            background: var(--teal-50);
+        }
+
+        .cta-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: clamp(40px, 6vw, 72px);
+            text-align: center;
+            box-shadow: 0 4px 40px rgba(10, 61, 82, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--teal-700), var(--green-400));
+        }
+
+        .cta-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--green-500);
+            background: var(--green-100);
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+        }
+
+        .cta-status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green-500);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .cta-card .section-heading {
+            max-width: 480px;
+            margin: 0 auto 16px;
+        }
+
+        .cta-card .section-body {
+            max-width: 500px;
+            margin: 0 auto 36px;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 10px;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+
+        .email-form input {
+            flex: 1;
+            font-family: var(--font-body);
+            font-size: 15px;
+            padding: 14px 18px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: 10px;
+            outline: none;
+            transition: border-color 0.2s;
+            background: var(--gray-50);
+        }
+
+        .email-form input:focus {
+            border-color: var(--teal-500);
+            background: var(--white);
+        }
+
+        .email-form input::placeholder {
+            color: var(--gray-400);
+        }
+
+        .email-form button {
+            flex-shrink: 0;
+        }
+
+        .cta-note {
+            font-size: 13px;
+            color: var(--gray-400);
+            margin-top: 14px;
+        }
+
+        /* ═══════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════ */
+        .footer {
+            padding: 40px 0;
+            background: var(--gray-900);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-logo img {
+            height: 32px;
+            width: auto;
+            opacity: 0.7;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .footer-text a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .footer-text a:hover { color: var(--white); }
+
+        .footer-acknowledgment {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.35);
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════ */
+        @media (max-width: 900px) {
+            .problem-grid,
+            .solution-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .audience-grid,
+            .impact-grid {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 68px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                padding: 24px var(--side-pad);
+                border-bottom: 1px solid var(--gray-100);
+                box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            }
+
+            .email-form {
+                flex-direction: column;
+            }
+
+            .email-form button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="#home" class="logo">
-                <!-- Replace 'deticktor-logo.png' with your actual logo file -->
-                <img src="deticktor-logo.png" alt="DeTicktor Logo" class="logo-img">
-                <!-- Fallback text logo if image doesn't load -->
-                <span class="logo-text" style="display: none;">de</span><span class="logo-highlight" style="display: none;">TICK</span><span class="logo-text" style="display: none;">tor</span>
+
+    <!-- ═══════════════ NAVIGATION ═══════════════ -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <img src="logo.jpg" alt="DeTICKtor">
             </a>
-            <ul class="nav-menu">
-                <li><a href="#story" class="nav-link">Our Story</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#milestones" class="nav-link">Milestones</a></li>
-                <li><a href="#gallery" class="nav-link">Gallery</a></li>
-                <li><a href="#demo-day" class="nav-link">Demo Day</a></li>
-                <li><a href="#resources" class="nav-link">Resources</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#problem">Problem</a></li>
+                <li><a href="#solution">Solution</a></li>
+                <li><a href="#story">Our Story</a></li>
+                <li><a href="#signup" class="nav-cta">Stay Updated</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="hero">
         <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content">
-                    <h1>Detect ticks early. Protect your pet's health.</h1>
-                    <p>Early tick detection tool designed for shelters, pet owners, and vets, because your furry friend deserves quick, painless protection.</p>
-                    <a href="#story" class="cta-button">Join our Early Access List!</a>
-                </div>
-                <div class="hero-image">
-                    <!-- Replace with your actual hero image -->
-                    <img src="lab-testing-setup.jpg" alt="DeTicktor Lab Testing Setup" style="width: 100%; max-width: 500px; border-radius: 12px;">
-                    <!-- Fallback placeholder -->
-                    <!-- <div class="image-placeholder">🐕</div> -->
-                </div>
+            <div class="hero-logo">
+                <img src="logo.jpg" alt="DeTICKtor — Detect to Protect">
             </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section id="story" class="section team">
-        <div class="container">
-            <h2 class="section-title">See the team in action!</h2>
-            <div class="team-content">
-                <p class="team-description">From brainstorming at whiteboards to building prototypes, every step we take is driven by our love for animals and our commitment to safer, smarter care.</p>
-                <p class="team-names">L to R: Vivian Hu, Ehlaam Imran, Sahana Kakarla, Amy Salim, Nilabha Mukherjee</p>
-            </div>
-            <div class="team-image">
-                <!-- Replace with your actual team photo -->
-                <img src="team-selfie-hackathon.jpg" alt="DeTicktor Team at Cornell Hackathon" style="width: 100%; max-width: 600px; border-radius: 12px;">
-                <!-- Fallback placeholder -->
-                <!-- <div class="image-placeholder">👥</div> -->
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content">
-                    <h2 style="font-size: 48px; margin-bottom: 30px;">About DeTicktor</h2>
-                    <p>DeTicktor is an innovative early detection system specifically designed to identify ticks on pets before they become a serious health threat. Our technology serves veterinarians, animal shelters, and pet owners who want the best protection for their beloved companions.</p>
-                    <p>Winning the Animal Health Hackathon at Cornell in February 2025, our solution represents the cutting edge of pet health technology, combining advanced detection methods with user-friendly design.</p>
-                </div>
-                <div class="hero-image">
-                    <!-- Replace with your Cornell award photo -->
-                    <img src="cornell-award-ceremony.jpg" alt="DeTicktor Team Winning Cornell Animal Health Hackathon" style="width: 100%; max-width: 500px; border-radius: 12px;">
-                    <!-- Fallback placeholder -->
-                    <!-- <div class="image-placeholder">🏆</div> -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Milestones Section -->
-    <section id="milestones" class="section milestones">
-        <div class="container">
-            <h2 class="section-title">Milestones & Media</h2>
-            <div class="milestone-grid">
-                <div class="milestone-item">
-                    <!-- Cornell Hackathon Victory -->
-                    <img src="cornell-award-ceremony.jpg" alt="Cornell Hackathon Award" class="milestone-image">
-                    <div class="milestone-title">Winning the Animal Health Hackathon at Cornell, Feb 2025</div>
-                </div>
-                <div class="milestone-item">
-                    <!-- Live tick testing -->
-                    <img src="lab-testing-setup.jpg" alt="Live Tick Testing" class="milestone-image">
-                    <div class="milestone-title">Getting live ticks delivered for testing, June 2025</div>
-                </div>
-                <div class="milestone-item">
-                    <!-- Hackathon preparation -->
-                    <img src="team-selfie-hackathon.jpg" alt="Hackathon Preparation" class="milestone-image">
-                    <div class="milestone-title">Preparing for the Hackathon, Feb 2025</div>
-                </div>
-                <div class="milestone-item">
-                    <!-- Logo/branding development -->
-                    <img src="deticktor-logo.png" alt="Product Development" class="milestone-image">
-                    <div class="milestone-title">Product Development Phase</div>
-                </div>
-                <div class="milestone-item">
-                    <div class="image-placeholder">🔬</div>
-                    <div class="milestone-title">Research & Testing</div>
-                </div>
-                <div class="milestone-item">
-                    <div class="image-placeholder">🚀</div>
-                    <div class="milestone-title">Upcoming Beta Launch</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="section gallery">
-        <div class="container">
-            <h2 class="section-title">Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <!-- Use image of Simba from original site -->
-                    <div class="image-placeholder">🐕</div>
-                    <div class="gallery-caption">Simba!</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="team-selfie-hackathon.jpg" alt="Team Collaboration" class="gallery-image">
-                    <div class="gallery-caption">Team Collaboration</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="cornell-award-ceremony.jpg" alt="Cornell Hackathon Presentation" class="gallery-image">
-                    <div class="gallery-caption">Cornell Hackathon Presentation</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="lab-testing-setup.jpg" alt="Live Tick Testing" class="gallery-image">
-                    <div class="gallery-caption">Live Tick Testing</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Demo Day Section -->
-    <section id="demo-day" class="section demo-day">
-        <div class="container">
-            <h2 class="section-title">Demo Day</h2>
-            <p class="section-subtitle" style="text-align: center; font-size: 18px; color: #666; max-width: 600px; margin: 0 auto 40px;">
-                Highlights from our presentation and demo sessions
+            <h1>A better way to <em>find ticks</em><br> before they cause harm</h1>
+            <p class="hero-sub">
+                DeTICKtor is building a non-invasive screening device that helps animal caregivers detect ticks earlier, faster, and more reliably than manual inspection alone.
             </p>
-            <div class="demo-grid">
-                <div class="demo-item">
-                    <div class="image-placeholder" style="height: 200px;">📊</div>
-                    <div class="demo-caption">Pitch Presentation</div>
-                </div>
-                <div class="demo-item">
-                    <div class="image-placeholder" style="height: 200px;">🎯</div>
-                    <div class="demo-caption">Product Demo</div>
-                </div>
-                <div class="demo-item">
-                    <div class="image-placeholder" style="height: 200px;">👥</div>
-                    <div class="demo-caption">Team Presentation</div>
-                </div>
-                <div class="demo-item">
-                    <div class="image-placeholder" style="height: 200px;">🏆</div>
-                    <div class="demo-caption">Award Ceremony</div>
-                </div>
-                <div class="demo-item">
-                    <div class="image-placeholder" style="height: 200px;">🤝</div>
-                    <div class="demo-caption">Networking</div>
-                </div>
-                <div class="demo-item">
-                    <div class="image-placeholder" style="height: 200px;">💡</div>
-                    <div class="demo-caption">Innovation Showcase</div>
-                </div>
+            <div class="hero-cta-group">
+                <a href="#signup" class="btn-primary">
+                    Join the Waitlist
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#story" class="btn-secondary">Our Story</a>
             </div>
         </div>
     </section>
 
-    <!-- Resources Section -->
-    <section id="resources" class="section resources">
+    <!-- ═══════════════ PROBLEM ═══════════════ -->
+    <section class="problem" id="problem">
         <div class="container">
-            <h2 class="section-title">Resources & Links</h2>
-            <p class="section-subtitle" style="text-align: center; font-size: 18px; color: #666; max-width: 600px; margin: 0 auto 40px;">
-                Access our publications, videos, and important documents
+            <div class="section-label">The Problem</div>
+            <div class="section-heading">Ticks are hard to find.<br>The consequences aren't.</div>
+            <p class="section-body">
+                Ticks can transmit serious diseases to animals within hours of attachment. Yet for most caregivers, the only screening method available is a slow, manual inspection that often misses what it's looking for.
             </p>
-            
-            <!-- Featured Video -->
-            <div style="max-width: 800px; margin: 0 auto 60px;">
-                <h3 style="text-align: center; font-size: 24px; color: #333; margin-bottom: 20px;">Cornell Animal Health Hackathon Pitch</h3>
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/mNkb_PQHE-g" 
-                            title="DeTicktor Cornell Hackathon Pitch" 
-                            frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
 
-            <div class="resources-grid">
-                <div class="resource-card">
-                    <div class="resource-icon">📰</div>
-                    <h3>Cornell Hackathon Newsletter</h3>
-                    <p>Read about our victory and the innovative solutions presented at the Animal Health Hackathon</p>
-                    <a href="https://hackathon.cornell.edu/_files/ugd/cd042f_a73aeba2ae614e51bf27b3cb329363ee.pdf" 
-                       target="_blank" class="resource-link primary">Read Newsletter</a>
-                </div>
-                
-                <div class="resource-card">
-                    <div class="resource-icon">🎥</div>
-                    <h3>Pitch Video</h3>
-                    <p>Watch our winning presentation from the Cornell Animal Health Hackathon</p>
-                    <a href="https://m.youtube.com/watch?v=mNkb_PQHE-g" 
-                       target="_blank" class="resource-link">Watch Video</a>
-                </div>
-                
-                <div class="resource-card">
-                    <div class="resource-icon">📝</div>
-                    <h3>Substack Publication</h3>
-                    <p>Follow our journey and insights on animal health innovation</p>
-                    <a href="#" class="resource-link">Read Articles</a>
-                    <p style="font-size: 12px; color: #999; margin-top: 10px;">Link coming soon</p>
-                </div>
-                
-                <div class="resource-card">
-                    <div class="resource-icon">🎯</div>
-                    <h3>Z Fellow Video</h3>
-                    <p>Our fellowship journey and impact in the startup ecosystem</p>
-                    <a href="#" class="resource-link">Watch Video</a>
-                    <p style="font-size: 12px; color: #999; margin-top: 10px;">Coming soon</p>
-                </div>
-                
-                <div class="resource-card">
-                    <div class="resource-icon">🏫</div>
-                    <h3>Cornell Animal Health</h3>
-                    <p>Learn more about the hackathon that launched our journey</p>
-                    <a href="https://hackathon.cornell.edu/" 
-                       target="_blank" class="resource-link">Visit Site</a>
-                </div>
-                
-                <div class="resource-card">
-                    <div class="resource-icon">📧</div>
-                    <h3>Early Access List</h3>
-                    <p>Be the first to know when DeTicktor becomes available</p>
-                    <a href="#contact" class="resource-link primary">Join Waitlist</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-content">
-                    <h2>Get In Touch</h2>
-                    <p>Have a question? Ready to learn more about DeTicktor?</p>
-                    
-                    <div class="contact-info">
-                        <div class="contact-section">
-                            <h3>📧 Email us</h3>
-                            <a href="mailto:hello@deticktor.com" class="contact-button">✉ Email</a>
-                        </div>
-                        
-                        <div class="contact-section">
-                            <h3>📍 Visit us</h3>
-                            <a href="#" class="contact-button">↗ Get Directions</a>
-                        </div>
-                        
-                        <div class="contact-section">
-                            <h3>🚀 Early Access</h3>
-                            <p style="font-size: 14px; color: #666; margin-top: 5px;">Join our waitlist to be the first to try DeTicktor when it launches.</p>
-                        </div>
-                        
-                        <div class="contact-section">
-                            <h3>🏢 For Veterinarians & Shelters</h3>
-                            <p style="font-size: 14px; color: #666; margin-top: 5px;">Professional partnerships and bulk licensing opportunities available.</p>
-                        </div>
-                        
-                        <div class="contact-section">
-                            <h3>🐾 For Pet Owners</h3>
-                            <p style="font-size: 14px; color: #666; margin-top: 5px;">Early access notifications and product updates for individual users.</p>
-                        </div>
-
-                        <div class="contact-section">
-                            <h3>📺 Media & Press</h3>
-                            <p style="font-size: 14px; color: #666; margin-top: 5px;">Interview requests and media inquiries welcome.</p>
-                        </div>
+            <div class="problem-grid">
+                <div class="problem-cards animate-on-scroll">
+                    <div class="problem-card">
+                        <div class="problem-card-icon">🔍</div>
+                        <h3>Easy to miss, hard to spot</h3>
+                        <p>Ticks can be as small as a poppy seed. On dark-furred or thick-coated animals, visual inspection alone frequently fails—even for experienced caregivers.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-card-icon">⏱️</div>
+                        <h3>Manual checks don't scale</h3>
+                        <p>Shelters handling dozens of animals each day simply don't have the time or staffing to perform thorough, hands-on tick checks for every animal that comes through intake.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-card-icon">⚠️</div>
+                        <h3>Delayed detection, real consequences</h3>
+                        <p>Missed ticks can lead to tick-borne illnesses that affect the animal's health, complicate shelter operations, and increase the cost and complexity of care.</p>
                     </div>
                 </div>
-                <div>
-                    <div class="map-container">
-                        <div class="map-placeholder">🗺️ Interactive Map Location</div>
-                        <!-- Replace with actual map embed -->
+
+                <div class="problem-stat-block animate-on-scroll">
+                    <div class="stat-item">
+                        <div class="stat-number">75%</div>
+                        <div class="stat-label">of tick-borne disease cases in animals are linked to ticks that went undetected for too long</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">14M+</div>
+                        <div class="stat-label">animals enter U.S. shelters each year, many without any standardized tick screening</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">&lt;2 min</div>
+                        <div class="stat-label">is our goal for a reliable, non-invasive tick screening check per animal</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ═══════════════ SOLUTION ═══════════════ -->
+    <section class="solution" id="solution">
+        <div class="container">
+            <div class="section-label">The Solution</div>
+            <div class="section-heading">Screening that supports<br>the people who care</div>
+
+            <div class="solution-content">
+                <div class="solution-text animate-on-scroll">
+                    <p>
+                        DeTICKtor is a handheld, non-invasive device designed to help identify the presence of ticks on an animal—without requiring sedation, shaving, or extensive handling.
+                    </p>
+                    <p>
+                        It's not a replacement for veterinary judgment. It's a tool that gives caregivers faster, more consistent screening—so they can act sooner and with greater confidence.
+                    </p>
+
+                    <div class="solution-features">
+                        <div class="solution-feature">
+                            <div class="feature-check">
+                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <span>Non-invasive and animal-friendly screening</span>
+                        </div>
+                        <div class="solution-feature">
+                            <div class="feature-check">
+                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <span>Designed for high-throughput environments like shelters</span>
+                        </div>
+                        <div class="solution-feature">
+                            <div class="feature-check">
+                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <span>Supports existing care workflows, doesn't replace them</span>
+                        </div>
+                        <div class="solution-feature">
+                            <div class="feature-check">
+                                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <span>Quick screening time per animal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solution-image-wrap animate-on-scroll">
+                    <img src="team-demo-booth.jpg" alt="DeTICKtor team demonstrating the prototype at Rev Ithaca">
+                    <p class="solution-image-caption">The team demonstrating an early prototype at Rev: Ithaca Startup Works</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ WHO IT'S FOR ═══════════════ -->
+    <section class="audience" id="audience">
+        <div class="container">
+            <div class="audience-header">
+                <div class="section-label">Who It's For</div>
+                <div class="section-heading">Built for the people on the front lines of animal care</div>
+                <p class="section-body">
+                    We're starting where the need is greatest—and where better screening can make the biggest difference.
+                </p>
+            </div>
+
+            <div class="audience-grid">
+                <div class="audience-card animate-on-scroll">
+                    <span class="audience-badge">Primary Focus</span>
+                    <div class="audience-icon">🏠</div>
+                    <h3>Animal Shelters</h3>
+                    <p>High volume, limited time, high stakes. Shelters need reliable screening tools that can keep up with intake flow and protect every animal that walks through the door.</p>
+                </div>
+                <div class="audience-card animate-on-scroll">
+                    <div class="audience-icon">✂️</div>
+                    <h3>Groomers &amp; Veterinary Clinics</h3>
+                    <p>Professionals who handle animals daily and want an additional screening layer to catch what hands-on checks might miss.</p>
+                </div>
+                <div class="audience-card animate-on-scroll">
+                    <div class="audience-icon">🐾</div>
+                    <h3>Multi-Pet Households</h3>
+                    <p>A future opportunity for pet owners managing multiple animals who want peace of mind between vet visits. (Coming later.)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ OUR STORY ═══════════════ -->
+    <section class="story" id="story">
+        <div class="container">
+            <div class="section-label">Our Story</div>
+            <div class="section-heading">How DeTICKtor began</div>
+
+            <div class="story-intro">
+                <p>
+                    DeTICKtor didn't start in a boardroom. It started at a hackathon—a group of students at Cornell University who cared about animal health and saw a gap no one was filling. What began as a weekend project became a mission.
+                </p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">January 2025</div>
+                    <div class="timeline-title">Cornell Animal Health Hackathon</div>
+                    <div class="timeline-desc">Our team formed around a shared observation: there was no fast, reliable, non-invasive way to screen animals for ticks. Over one intense weekend, we built our first concept prototype.</div>
+                    <span class="timeline-badge badge-award">🏆 Winning Team — Most Novel &amp; Innovative Animal Health Solution</span>
+                </div>
+
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">May – August 2025</div>
+                    <div class="timeline-title">Rev: Ithaca Startup Works — Hardware Accelerator</div>
+                    <div class="timeline-desc">Selected for Rev's prototyping accelerator, where we developed our concept into a working hardware prototype, conducted early user research with shelters, and began refining our approach.</div>
+                </div>
+
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">September – December 2025</div>
+                    <div class="timeline-title">Rev Hardware Protofacturing Accelerator</div>
+                    <div class="timeline-desc">Continued development through Rev's advanced hardware program, focused on moving from prototype to a design ready for pilot testing in real shelter environments.</div>
+                </div>
+
+                <div class="timeline-item future animate-on-scroll">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">April 2026</div>
+                    <div class="timeline-title">Startup Grind Conference — San Francisco</div>
+                    <div class="timeline-desc">We'll be presenting DeTICKtor at Startup Grind's global conference, connecting with investors, partners, and fellow founders working on real-world problems.</div>
+                    <span class="timeline-badge badge-upcoming">Upcoming</span>
+                </div>
+            </div>
+
+            <div class="slideshow" id="storySlideshow">
+                <div class="slideshow-track">
+                    <div class="slide active">
+                        <img src="team-whiteboard.jpg" alt="The team brainstorming at the Cornell hackathon">
+                        <div class="slide-caption">Brainstorming at the Cornell Animal Health Hackathon, 2025</div>
+                    </div>
+                    <div class="slide">
+                        <img src="team-hackathon-present.jpg" alt="Presenting at the Cornell Animal Health Hackathon">
+                        <div class="slide-caption">Presenting our concept to judges at the hackathon</div>
+                    </div>
+                    <div class="slide">
+                        <img src="team-rev.png" alt="Working at Rev: Ithaca Startup Works">
+                        <div class="slide-caption">Developing our prototype at Rev: Ithaca Startup Works</div>
+                    </div>
+                    <div class="slide">
+                        <img src="team-demo-booth.jpg" alt="DeTICKtor demo booth with prototype">
+                        <div class="slide-caption">Showcasing our prototype and early demo</div>
+                    </div>
+                </div>
+                <button class="slide-btn slide-prev" aria-label="Previous slide" onclick="changeSlide('storySlideshow', -1)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button class="slide-btn slide-next" aria-label="Next slide" onclick="changeSlide('storySlideshow', 1)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+                <div class="slide-dots" id="storyDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ WHY IT MATTERS ═══════════════ -->
+    <section class="impact" id="impact">
+        <div class="container">
+            <div style="text-align:center; margin-bottom: 48px;">
+                <div class="section-label">Why It Matters</div>
+                <div class="section-heading">Better screening. Healthier outcomes.</div>
+            </div>
+
+            <div class="impact-grid">
+                <div class="impact-card animate-on-scroll">
+                    <div class="impact-icon">🛡️</div>
+                    <h3>Preventative Care</h3>
+                    <p>Catching ticks earlier means intervening before disease transmission becomes likely—shifting from reactive treatment to proactive screening.</p>
+                </div>
+                <div class="impact-card animate-on-scroll">
+                    <div class="impact-icon">⚡</div>
+                    <h3>Faster Detection</h3>
+                    <p>A purpose-built tool can screen animals more quickly and consistently than manual methods, freeing caregivers to focus on the animals that need them most.</p>
+                </div>
+                <div class="impact-card animate-on-scroll">
+                    <div class="impact-icon">💚</div>
+                    <h3>Less Stress for Everyone</h3>
+                    <p>A gentler screening process is better for the animal, easier on the caregiver, and creates a calmer environment—especially in busy shelter settings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ CTA / WHERE WE ARE ═══════════════ -->
+    <section class="cta-section" id="signup">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-status">
+                    <span class="cta-status-dot"></span>
+                    Early Stage — Actively Prototyping
+                </div>
+                <div class="section-heading">We're building something new. Come along.</div>
+                <p class="section-body" style="margin: 0 auto 36px;">
+                    DeTICKtor is in active development. If you're a shelter, caregiver, researcher, or just someone who cares about animal health—we'd love to keep you in the loop.
+                </p>
+                <form class="email-form" onsubmit="handleSubmit(event)">
+                    <input type="email" placeholder="Your email address" required aria-label="Email address">
+                    <button type="submit" class="btn-primary">Join Waitlist</button>
+                </form>
+                <p class="cta-note">No spam. Just occasional updates on our progress.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
     <footer class="footer">
-        <div class="footer-logo">🐾</div>
-        <span>DeTicktor</span>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-logo">
+                    <img src="logo.jpg" alt="DeTICKtor">
+                </div>
+                <div class="footer-text">
+                    Questions? Reach us at <a href="mailto:hello@deticktor.com">hello@deticktor.com</a>
+                </div>
+            </div>
+            <div class="footer-acknowledgment">
+                Born at Cornell University · Developed through Rev: Ithaca Startup Works · © 2025 DeTICKtor
+            </div>
+        </div>
     </footer>
 
+    <!-- ═══════════════ SCRIPTS ═══════════════ -->
     <script>
-        // Mobile menu toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
+        // Scroll-based nav shadow
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 20);
         });
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }));
+        // Mobile toggle
+        const toggle = document.getElementById('mobileToggle');
+        const links = document.getElementById('navLinks');
+        toggle.addEventListener('click', () => {
+            links.classList.toggle('open');
+        });
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        // Close mobile menu on link click
+        links.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => links.classList.remove('open'));
+        });
+
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
                 }
             });
-        });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-        // Logo fallback handling
-        const logoImg = document.querySelector('.logo-img');
-        const logoFallback = document.querySelectorAll('.logo-text, .logo-highlight');
-        
-        if (logoImg) {
-            logoImg.onerror = function() {
-                this.style.display = 'none';
-                logoFallback.forEach(el => el.style.display = 'inline');
-            };
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // ═══════════════ SLIDESHOW ═══════════════
+        function initSlideshow(containerId, dotsId) {
+            const container = document.getElementById(containerId);
+            const dotsContainer = document.getElementById(dotsId);
+            const slides = container.querySelectorAll('.slide');
+
+            // Create dots
+            slides.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                dot.onclick = () => goToSlide(containerId, i);
+                dotsContainer.appendChild(dot);
+            });
+
+            // Auto-advance
+            container._autoplay = setInterval(() => changeSlide(containerId, 1), 5000);
+
+            // Pause on hover
+            container.addEventListener('mouseenter', () => clearInterval(container._autoplay));
+            container.addEventListener('mouseleave', () => {
+                container._autoplay = setInterval(() => changeSlide(containerId, 1), 5000);
+            });
         }
 
-        // Add scroll effect to navbar
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = 'none';
+        function getCurrentIndex(containerId) {
+            const slides = document.getElementById(containerId).querySelectorAll('.slide');
+            for (let i = 0; i < slides.length; i++) {
+                if (slides[i].classList.contains('active')) return i;
             }
-        });
+            return 0;
+        }
+
+        function goToSlide(containerId, index) {
+            const container = document.getElementById(containerId);
+            const slides = container.querySelectorAll('.slide');
+            const dots = container.querySelectorAll('.slide-dot');
+
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function changeSlide(containerId, direction) {
+            const total = document.getElementById(containerId).querySelectorAll('.slide').length;
+            const current = getCurrentIndex(containerId);
+            let next = (current + direction + total) % total;
+            goToSlide(containerId, next);
+        }
+
+        // Initialize slideshows
+        initSlideshow('storySlideshow', 'storyDots');
+
+        // Form handler placeholder
+        function handleSubmit(e) {
+            e.preventDefault();
+            const input = e.target.querySelector('input');
+            const email = input.value;
+            
+            // Replace with your actual form handler (Mailchimp, ConvertKit, Google Forms, etc.)
+            const btn = e.target.querySelector('button');
+            btn.textContent = 'Thank you!';
+            btn.style.background = 'var(--green-500)';
+            input.value = '';
+            
+            setTimeout(() => {
+                btn.textContent = 'Join Waitlist';
+                btn.style.background = '';
+            }, 3000);
+        }
     </script>
 </body>
 </html>
