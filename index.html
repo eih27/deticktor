@@ -579,6 +579,85 @@
         }
 
         /* ═══════════════════════════════════════
+           MEET THE FOUNDERS
+           ═══════════════════════════════════════ */
+        .founders {
+            padding: var(--section-pad) 0;
+            background: var(--teal-50);
+        }
+
+        .founders-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .founders-header .section-body {
+            margin: 0 auto;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 24px;
+        }
+
+        .founder-card {
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            border-radius: 16px;
+            padding: 28px 22px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .founder-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(10, 61, 82, 0.07);
+        }
+
+        .founder-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 18px;
+            background: var(--gray-100);
+            border: 3px solid var(--teal-100);
+        }
+
+        .founder-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .founder-card h3 {
+            font-family: var(--font-display);
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--teal-900);
+            margin-bottom: 4px;
+        }
+
+        .founder-degree {
+            display: block;
+            font-size: 12.5px;
+            font-weight: 500;
+            color: var(--green-500);
+            margin-bottom: 14px;
+            line-height: 1.4;
+        }
+
+        .founder-card p {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.65;
+            text-align: left;
+        }
+
+        /* ═══════════════════════════════════════
            OUR STORY / TIMELINE
            ═══════════════════════════════════════ */
         .story {
@@ -1000,6 +1079,12 @@
         /* ═══════════════════════════════════════
            RESPONSIVE
            ═══════════════════════════════════════ */
+        @media (max-width: 1080px) {
+            .founders-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         @media (max-width: 900px) {
             .problem-grid,
             .solution-content {
@@ -1044,6 +1129,12 @@
                 flex-direction: column;
                 text-align: center;
             }
+
+            .founders-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
@@ -1061,6 +1152,7 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#problem">Problem</a></li>
                 <li><a href="#solution">Solution</a></li>
+                <li><a href="#founders">Team</a></li>
                 <li><a href="#story">Our Story</a></li>
                 <li><a href="#signup" class="nav-cta">Stay Updated</a></li>
             </ul>
@@ -1211,6 +1303,66 @@
                     <div class="audience-icon">🐾</div>
                     <h3>Multi-Pet Households</h3>
                     <p>A future opportunity for pet owners managing multiple animals who want peace of mind between vet visits. (Coming later.)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ MEET THE FOUNDERS ═══════════════ -->
+    <section class="founders" id="founders">
+        <div class="container">
+            <div class="founders-header">
+                <div class="section-label">Meet the Founders</div>
+                <div class="section-heading">Five people, one hackathon,<br>and a dog named Simba</div>
+                <p class="section-body">
+                    It started when Sahana's dog Simba kept coming home with ticks—and the worry that came with each one. She walked into the Cornell Animal Health Hackathon with an idea. By the end of that weekend, the five of us had become a team. That was over a year and a half ago. We haven't stopped since.
+                </p>
+            </div>
+
+            <div class="founders-grid">
+                <div class="founder-card animate-on-scroll">
+                    <div class="founder-photo">
+                        <img src="sahana.jpg" alt="Sahana Kakarla">
+                    </div>
+                    <h3>Sahana Kakarla</h3>
+                    <span class="founder-degree">M.Eng. Engineering Management '25, Cornell</span>
+                    <p>The one who started it all. Sahana's dog Simba turned her into a tick-checking obsessive—and that obsession became DeTICKtor. A classical dancer, singer, and genuine jack of all trades, she brings big-picture thinking and the kind of drive that turns weekend ideas into real companies.</p>
+                </div>
+
+                <div class="founder-card animate-on-scroll">
+                    <div class="founder-photo">
+                        <img src="ehlaam.jpg" alt="Ehlaam Imran">
+                    </div>
+                    <h3>Ehlaam Imran</h3>
+                    <span class="founder-degree">M.Eng. Engineering Management '25, Cornell</span>
+                    <p>Jumped in the moment she heard the pitch—and never looked back. Ehlaam brings structure, strategy, and a sharp eye for what matters. Outside of DeTICKtor, you'll find her deep in a classic novel, yelling at an F1 race, or picking up her fourth language.</p>
+                </div>
+
+                <div class="founder-card animate-on-scroll">
+                    <div class="founder-photo">
+                        <img src="nilabha.jpg" alt="Nilabha Mukherjea">
+                    </div>
+                    <h3>Nilabha Mukherjea</h3>
+                    <span class="founder-degree">M.S. Biomedical Engineering '25, Cornell</span>
+                    <p>The detail-oriented one. If something needs to be precise, measured, and exactly right—Nilabha's already on it. His biomedical engineering background anchors the team's technical work. When he's not heads-down on the project, he's probably gaming or making everyone laugh.</p>
+                </div>
+
+                <div class="founder-card animate-on-scroll">
+                    <div class="founder-photo">
+                        <img src="vivian.jpg" alt="Vivian Hu">
+                    </div>
+                    <h3>Vivian Hu</h3>
+                    <span class="founder-degree">B.S. Biomedical Engineering '27, Cornell</span>
+                    <p>Vivian showed up to the same hackathon and clicked with the team instantly. She's the quickest thinker in the room—always ready with a creative angle no one else saw coming. The youngest founder, and often the one pushing the boldest ideas forward.</p>
+                </div>
+
+                <div class="founder-card animate-on-scroll">
+                    <div class="founder-photo">
+                        <img src="amy.jpg" alt="Amy Salim">
+                    </div>
+                    <h3>Amy Salim</h3>
+                    <span class="founder-degree">DVM '28, Cornell College of Veterinary Medicine</span>
+                    <p>The team's animal health expert—and its heart. Amy has always been passionate about animal welfare, and she brings the clinical knowledge that keeps DeTICKtor grounded in real veterinary needs. Also widely regarded as the warmest person in any room she walks into.</p>
                 </div>
             </div>
         </div>
