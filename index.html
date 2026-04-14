@@ -289,6 +289,12 @@
             transform: translateY(-1px);
         }
 
+        .btn-primary:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .btn-secondary {
             display: inline-flex;
             align-items: center;
@@ -1020,6 +1026,16 @@
             color: var(--gray-400);
         }
 
+        /* Honeypot field - hidden from real users, bots will fill it */
+        .email-form .hp-field {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
         .email-form button {
             flex-shrink: 0;
         }
@@ -1028,7 +1044,11 @@
             font-size: 13px;
             color: var(--gray-400);
             margin-top: 14px;
+            min-height: 20px;
         }
+
+        .cta-note.success { color: var(--green-500); font-weight: 600; }
+        .cta-note.error { color: #c0392b; font-weight: 600; }
 
         /* ═══════════════════════════════════════
            FOOTER
@@ -1482,11 +1502,13 @@
                 <p class="section-body" style="margin: 0 auto 36px;">
                     DeTICKtor is in active development. If you're a shelter, caregiver, researcher, or just someone who cares about animal health—we'd love to keep you in the loop.
                 </p>
-                <form class="email-form" onsubmit="handleSubmit(event)">
-                    <input type="email" placeholder="Your email address" required aria-label="Email address">
-                    <button type="submit" class="btn-primary">Join Waitlist</button>
+                <form class="email-form" id="waitlistForm" onsubmit="handleSubmit(event)">
+                    <input type="email" name="email" placeholder="Your email address" required aria-label="Email address">
+                    <!-- Honeypot: real users won't fill this, bots will -->
+                    <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <button type="submit" class="btn-primary" id="waitlistBtn">Join Waitlist</button>
                 </form>
-                <p class="cta-note">No spam. Just occasional updates on our progress.</p>
+                <p class="cta-note" id="formNote">No spam. Just occasional updates on our progress.</p>
             </div>
         </div>
     </section>
@@ -1510,6 +1532,10 @@
 
     <!-- ═══════════════ SCRIPTS ═══════════════ -->
     <script>
+        // ⚠️ PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE ⚠️
+        // Get this from: Google Sheet → Extensions → Apps Script → Deploy → New deployment → Web app
+        const WAITLIST_SCRIPT_URL = 'PASTE_YOUR_WEB_APP_URL_HERE';
+
         // Scroll-based nav shadow
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
@@ -1546,7 +1572,6 @@
             const dotsContainer = document.getElementById(dotsId);
             const slides = container.querySelectorAll('.slide');
 
-            // Create dots
             slides.forEach((_, i) => {
                 const dot = document.createElement('button');
                 dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
@@ -1555,10 +1580,8 @@
                 dotsContainer.appendChild(dot);
             });
 
-            // Auto-advance
             container._autoplay = setInterval(() => changeSlide(containerId, 1), 5000);
 
-            // Pause on hover
             container.addEventListener('mouseenter', () => clearInterval(container._autoplay));
             container.addEventListener('mouseleave', () => {
                 container._autoplay = setInterval(() => changeSlide(containerId, 1), 5000);
@@ -1592,25 +1615,65 @@
             goToSlide(containerId, next);
         }
 
-        // Initialize slideshows
         initSlideshow('storySlideshow', 'storyDots');
 
-        // Form handler placeholder
-        function handleSubmit(e) {
+        // ═══════════════ WAITLIST FORM → GOOGLE SHEETS ═══════════════
+        async function handleSubmit(e) {
             e.preventDefault();
-            const input = e.target.querySelector('input');
-            const email = input.value;
-            
-            // Replace with your actual form handler (Mailchimp, ConvertKit, Google Forms, etc.)
-            const btn = e.target.querySelector('button');
-            btn.textContent = 'Thank you!';
-            btn.style.background = 'var(--green-500)';
-            input.value = '';
-            
-            setTimeout(() => {
+            const form = e.target;
+            const input = form.querySelector('input[name="email"]');
+            const honeypot = form.querySelector('input[name="website"]');
+            const btn = document.getElementById('waitlistBtn');
+            const note = document.getElementById('formNote');
+            const email = input.value.trim();
+
+            // Honeypot check — if filled, silently "succeed" without submitting
+            if (honeypot.value) {
+                btn.textContent = 'Thank you!';
+                input.value = '';
+                return;
+            }
+
+            if (!email) return;
+
+            btn.disabled = true;
+            btn.textContent = 'Submitting...';
+            note.className = 'cta-note';
+            note.textContent = 'Sending...';
+
+            try {
+                await fetch(WAITLIST_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        source: 'deticktor.com',
+                        timestamp: new Date().toISOString()
+                    })
+                });
+
+                // no-cors means we can't read the response, but if fetch didn't throw, it worked
+                btn.textContent = 'Thank you!';
+                btn.style.background = 'var(--green-500)';
+                input.value = '';
+                note.className = 'cta-note success';
+                note.textContent = "You're on the list! We'll be in touch.";
+
+                setTimeout(() => {
+                    btn.textContent = 'Join Waitlist';
+                    btn.style.background = '';
+                    btn.disabled = false;
+                    note.className = 'cta-note';
+                    note.textContent = 'No spam. Just occasional updates on our progress.';
+                }, 5000);
+            } catch (err) {
+                console.error('Waitlist submission error:', err);
                 btn.textContent = 'Join Waitlist';
-                btn.style.background = '';
-            }, 3000);
+                btn.disabled = false;
+                note.className = 'cta-note error';
+                note.textContent = 'Something went wrong. Please try again or email hello@deticktor.com';
+            }
         }
     </script>
 </body>
