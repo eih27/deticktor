@@ -33,23 +33,18 @@
             --gray-700: #3d4a50;
             --gray-800: #2a3338;
             --gray-900: #1a2024;
-
             --font-display: 'Plus Jakarta Sans', -apple-system, sans-serif;
             --font-body: 'DM Sans', -apple-system, sans-serif;
-
             --max-width: 1120px;
             --section-pad: clamp(64px, 10vw, 120px);
             --side-pad: clamp(20px, 5vw, 48px);
         }
-
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
         html {
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-
         body {
             font-family: var(--font-body);
             font-size: 17px;
@@ -57,10 +52,8 @@
             color: var(--gray-800);
             background: var(--white);
         }
-
         img { max-width: 100%; height: auto; display: block; }
         a { color: inherit; }
-
         /* ═══════════════════════════════════════
            UTILITY
            ═══════════════════════════════════════ */
@@ -69,7 +62,6 @@
             margin: 0 auto;
             padding: 0 var(--side-pad);
         }
-
         .section-label {
             font-family: var(--font-body);
             font-size: 12px;
@@ -79,7 +71,6 @@
             color: var(--green-500);
             margin-bottom: 16px;
         }
-
         .section-heading {
             font-family: var(--font-display);
             font-weight: 600;
@@ -88,13 +79,11 @@
             color: var(--teal-900);
             margin-bottom: 20px;
         }
-
         .section-body {
             font-size: 17px;
             color: var(--gray-600);
             max-width: 640px;
         }
-
         /* ═══════════════════════════════════════
            ANIMATIONS
            ═══════════════════════════════════════ */
@@ -102,23 +91,19 @@
             from { opacity: 0; transform: translateY(24px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(24px);
             transition: opacity 0.7s ease, transform 0.7s ease;
         }
-
         .animate-on-scroll.visible {
             opacity: 1;
             transform: translateY(0);
         }
-
         /* ═══════════════════════════════════════
            NAVIGATION
            ═══════════════════════════════════════ */
@@ -134,11 +119,9 @@
             border-bottom: 1px solid rgba(0,0,0,0.06);
             transition: box-shadow 0.3s ease;
         }
-
         .nav.scrolled {
             box-shadow: 0 1px 16px rgba(10, 61, 82, 0.08);
         }
-
         .nav-inner {
             max-width: var(--max-width);
             margin: 0 auto;
@@ -148,19 +131,16 @@
             justify-content: space-between;
             height: 68px;
         }
-
         .nav-logo img {
             height: 40px;
             width: auto;
         }
-
         .nav-links {
             display: flex;
             align-items: center;
             gap: 32px;
             list-style: none;
         }
-
         .nav-links a {
             font-size: 14px;
             font-weight: 500;
@@ -168,9 +148,7 @@
             color: var(--gray-600);
             transition: color 0.2s;
         }
-
         .nav-links a:hover { color: var(--teal-700); }
-
         .nav-cta {
             font-size: 14px !important;
             font-weight: 600 !important;
@@ -180,9 +158,7 @@
             border-radius: 8px;
             transition: background 0.2s;
         }
-
         .nav-cta:hover { background: var(--teal-800) !important; }
-
         .mobile-toggle {
             display: none;
             background: none;
@@ -190,7 +166,6 @@
             cursor: pointer;
             padding: 8px;
         }
-
         .mobile-toggle span {
             display: block;
             width: 22px;
@@ -200,7 +175,6 @@
             transition: 0.3s;
             border-radius: 2px;
         }
-
         /* ═══════════════════════════════════════
            HERO
            ═══════════════════════════════════════ */
@@ -211,7 +185,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .hero::before {
             content: '';
             position: absolute;
@@ -222,18 +195,15 @@
             background: radial-gradient(circle, rgba(123, 193, 66, 0.06) 0%, transparent 70%);
             pointer-events: none;
         }
-
         .hero-logo {
             display: inline-block;
             margin-bottom: 32px;
             animation: fadeIn 0.8s ease both;
         }
-
         .hero-logo img {
-            height: clamp(80px, 12vw, 130px);
+            height: clamp(140px, 20vw, 220px);
             width: auto;
         }
-
         .hero h1 {
             font-family: var(--font-display);
             font-size: clamp(32px, 5vw, 54px);
@@ -243,12 +213,32 @@
             margin-bottom: 20px;
             animation: fadeUp 0.8s ease 0.15s both;
         }
-
         .hero h1 em {
             font-style: italic;
             color: var(--green-500);
         }
-
+        .patent-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--teal-700);
+            background: var(--white);
+            border: 1px solid var(--teal-100);
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(10, 61, 82, 0.04);
+            animation: fadeUp 0.8s ease 0.2s both;
+        }
+        .patent-badge svg {
+            width: 13px;
+            height: 13px;
+            stroke: var(--green-500);
+        }
         .hero-sub {
             font-size: clamp(17px, 2vw, 20px);
             color: var(--gray-600);
@@ -257,7 +247,6 @@
             line-height: 1.65;
             animation: fadeUp 0.8s ease 0.3s both;
         }
-
         .hero-cta-group {
             display: flex;
             align-items: center;
@@ -266,7 +255,6 @@
             flex-wrap: wrap;
             animation: fadeUp 0.8s ease 0.45s both;
         }
-
         .btn-primary {
             display: inline-flex;
             align-items: center;
@@ -283,18 +271,15 @@
             cursor: pointer;
             transition: background 0.2s, transform 0.15s;
         }
-
         .btn-primary:hover {
             background: var(--teal-800);
             transform: translateY(-1px);
         }
-
         .btn-primary:disabled {
             opacity: 0.7;
             cursor: not-allowed;
             transform: none;
         }
-
         .btn-secondary {
             display: inline-flex;
             align-items: center;
@@ -310,12 +295,10 @@
             border: 1px solid var(--gray-200);
             transition: border-color 0.2s, background 0.2s;
         }
-
         .btn-secondary:hover {
             border-color: var(--teal-700);
             background: var(--teal-50);
         }
-
         /* ═══════════════════════════════════════
            PROBLEM
            ═══════════════════════════════════════ */
@@ -323,7 +306,6 @@
             padding: var(--section-pad) 0;
             background: var(--white);
         }
-
         .problem-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -331,13 +313,11 @@
             align-items: center;
             margin-top: 48px;
         }
-
         .problem-cards {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-
         .problem-card {
             background: var(--gray-50);
             border: 1px solid var(--gray-100);
@@ -345,12 +325,10 @@
             padding: 28px;
             transition: transform 0.2s, box-shadow 0.2s;
         }
-
         .problem-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 32px rgba(10, 61, 82, 0.06);
         }
-
         .problem-card-icon {
             width: 40px;
             height: 40px;
@@ -361,7 +339,6 @@
             margin-bottom: 14px;
             font-size: 20px;
         }
-
         .problem-card h3 {
             font-family: var(--font-display);
             font-size: 18px;
@@ -369,13 +346,11 @@
             color: var(--teal-900);
             margin-bottom: 8px;
         }
-
         .problem-card p {
             font-size: 15px;
             color: var(--gray-600);
             line-height: 1.6;
         }
-
         .problem-stat-block {
             background: var(--teal-900);
             border-radius: 20px;
@@ -384,7 +359,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .problem-stat-block::after {
             content: '';
             position: absolute;
@@ -395,13 +369,10 @@
             background: radial-gradient(circle, rgba(123, 193, 66, 0.15) 0%, transparent 70%);
             pointer-events: none;
         }
-
         .stat-item {
             margin-bottom: 36px;
         }
-
         .stat-item:last-child { margin-bottom: 0; }
-
         .stat-number {
             font-family: var(--font-display);
             font-size: clamp(36px, 5vw, 48px);
@@ -410,13 +381,11 @@
             line-height: 1;
             margin-bottom: 8px;
         }
-
         .stat-label {
             font-size: 15px;
             color: rgba(255, 255, 255, 0.75);
             line-height: 1.5;
         }
-
         /* ═══════════════════════════════════════
            SOLUTION
            ═══════════════════════════════════════ */
@@ -424,7 +393,6 @@
             padding: var(--section-pad) 0;
             background: var(--teal-50);
         }
-
         .solution-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -432,27 +400,22 @@
             align-items: center;
             margin-top: 48px;
         }
-
         .solution-text p {
             color: var(--gray-600);
             margin-bottom: 24px;
         }
-
         .solution-text p:last-of-type { margin-bottom: 32px; }
-
         .solution-features {
             display: flex;
             flex-direction: column;
             gap: 16px;
             margin-bottom: 32px;
         }
-
         .solution-feature {
             display: flex;
             align-items: flex-start;
             gap: 14px;
         }
-
         .feature-check {
             flex-shrink: 0;
             width: 28px;
@@ -464,7 +427,6 @@
             justify-content: center;
             margin-top: 2px;
         }
-
         .feature-check svg {
             width: 14px;
             height: 14px;
@@ -474,34 +436,29 @@
             stroke-linecap: round;
             stroke-linejoin: round;
         }
-
         .solution-feature span {
             font-size: 16px;
             color: var(--gray-700);
             line-height: 1.5;
         }
-
         .solution-image-wrap {
             background: var(--white);
             border-radius: 20px;
             padding: 24px;
             box-shadow: 0 4px 32px rgba(10, 61, 82, 0.06);
         }
-
         .solution-image-wrap img {
             border-radius: 12px;
             width: 100%;
             height: 400px;
             object-fit: cover;
         }
-
         .solution-image-caption {
             text-align: center;
             font-size: 13px;
             color: var(--gray-400);
             margin-top: 14px;
         }
-
         /* ═══════════════════════════════════════
            WHO IT'S FOR
            ═══════════════════════════════════════ */
@@ -509,22 +466,18 @@
             padding: var(--section-pad) 0;
             background: var(--white);
         }
-
         .audience-header {
             text-align: center;
             margin-bottom: 56px;
         }
-
         .audience-header .section-body {
             margin: 0 auto;
         }
-
         .audience-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
         }
-
         .audience-card {
             background: var(--gray-50);
             border: 1px solid var(--gray-100);
@@ -534,16 +487,13 @@
             transition: transform 0.2s, box-shadow 0.2s;
             position: relative;
         }
-
         .audience-card:first-child {
             border-color: var(--green-300);
             background: var(--green-100);
         }
-
         .audience-card:first-child .audience-badge {
             display: inline-block;
         }
-
         .audience-badge {
             display: none;
             font-size: 11px;
@@ -559,17 +509,14 @@
             left: 50%;
             transform: translateX(-50%);
         }
-
         .audience-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 40px rgba(10, 61, 82, 0.07);
         }
-
         .audience-icon {
             font-size: 36px;
             margin-bottom: 16px;
         }
-
         .audience-card h3 {
             font-family: var(--font-display);
             font-size: 20px;
@@ -577,13 +524,11 @@
             color: var(--teal-900);
             margin-bottom: 10px;
         }
-
         .audience-card p {
             font-size: 15px;
             color: var(--gray-600);
             line-height: 1.6;
         }
-
         /* ═══════════════════════════════════════
            MEET THE FOUNDERS
            ═══════════════════════════════════════ */
@@ -591,24 +536,20 @@
             padding: var(--section-pad) 0;
             background: var(--teal-50);
         }
-
         .founders-header {
             text-align: center;
             margin-bottom: 56px;
         }
-
         .founders-header .section-body {
             margin: 0 auto;
             font-size: 17px;
             line-height: 1.75;
         }
-
         .founders-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 24px;
         }
-
         .founder-card {
             background: var(--white);
             border: 1px solid var(--gray-100);
@@ -617,12 +558,10 @@
             text-align: center;
             transition: transform 0.2s, box-shadow 0.2s;
         }
-
         .founder-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 40px rgba(10, 61, 82, 0.07);
         }
-
         .founder-photo {
             width: 100px;
             height: 100px;
@@ -632,13 +571,11 @@
             background: var(--gray-100);
             border: 3px solid var(--teal-100);
         }
-
         .founder-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .founder-card h3 {
             font-family: var(--font-display);
             font-size: 17px;
@@ -646,7 +583,6 @@
             color: var(--teal-900);
             margin-bottom: 4px;
         }
-
         .founder-degree {
             display: block;
             font-size: 12.5px;
@@ -655,14 +591,12 @@
             margin-bottom: 14px;
             line-height: 1.4;
         }
-
         .founder-card p {
             font-size: 14px;
             color: var(--gray-600);
             line-height: 1.65;
             text-align: left;
         }
-
         /* ═══════════════════════════════════════
            OUR STORY / TIMELINE
            ═══════════════════════════════════════ */
@@ -673,7 +607,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .story::before {
             content: '';
             position: absolute;
@@ -685,27 +618,22 @@
                         radial-gradient(ellipse at 80% 20%, rgba(26, 143, 173, 0.1) 0%, transparent 50%);
             pointer-events: none;
         }
-
         .story .section-label { color: var(--green-400); }
         .story .section-heading { color: var(--white); }
         .story .section-body { color: rgba(255, 255, 255, 0.7); }
-
         .story-intro {
             max-width: 640px;
             margin-bottom: 56px;
         }
-
         .story-intro p {
             color: rgba(255, 255, 255, 0.7);
             font-size: 17px;
             line-height: 1.75;
         }
-
         .timeline {
             position: relative;
             padding-left: 40px;
         }
-
         .timeline::before {
             content: '';
             position: absolute;
@@ -715,15 +643,12 @@
             width: 2px;
             background: rgba(123, 193, 66, 0.25);
         }
-
         .timeline-item {
             position: relative;
             margin-bottom: 40px;
             padding-left: 0;
         }
-
         .timeline-item:last-child { margin-bottom: 0; }
-
         .timeline-dot {
             position: absolute;
             left: -40px;
@@ -735,12 +660,10 @@
             border: 3px solid var(--teal-900);
             box-shadow: 0 0 0 3px rgba(123, 193, 66, 0.25);
         }
-
         .timeline-item.future .timeline-dot {
             background: transparent;
             border-color: var(--green-400);
         }
-
         .timeline-date {
             font-size: 13px;
             font-weight: 600;
@@ -749,7 +672,6 @@
             color: var(--green-400);
             margin-bottom: 6px;
         }
-
         .timeline-title {
             font-family: var(--font-display);
             font-size: 20px;
@@ -757,14 +679,12 @@
             color: var(--white);
             margin-bottom: 8px;
         }
-
         .timeline-desc {
             font-size: 15px;
             color: rgba(255, 255, 255, 0.65);
             line-height: 1.65;
             max-width: 520px;
         }
-
         .timeline-badge {
             display: inline-block;
             font-size: 11px;
@@ -775,17 +695,14 @@
             border-radius: 6px;
             margin-top: 10px;
         }
-
         .badge-award {
             background: rgba(123, 193, 66, 0.15);
             color: var(--green-400);
         }
-
         .badge-upcoming {
             background: rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.6);
         }
-
         /* ═══════════════════════════════════════
            SLIDESHOW
            ═══════════════════════════════════════ */
@@ -796,30 +713,25 @@
             overflow: hidden;
             background: rgba(0, 0, 0, 0.2);
         }
-
         .slideshow-track {
             position: relative;
             width: 100%;
             aspect-ratio: 16/9;
         }
-
         .slide {
             position: absolute;
             inset: 0;
             opacity: 0;
             transition: opacity 0.6s ease;
         }
-
         .slide.active {
             opacity: 1;
         }
-
         .slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .slide-caption {
             position: absolute;
             bottom: 0;
@@ -831,7 +743,6 @@
             color: rgba(255, 255, 255, 0.9);
             font-weight: 500;
         }
-
         .slide-btn {
             position: absolute;
             top: 50%;
@@ -851,14 +762,11 @@
             transition: background 0.2s;
             z-index: 2;
         }
-
         .slide-btn:hover {
             background: rgba(255, 255, 255, 0.3);
         }
-
         .slide-prev { left: 16px; }
         .slide-next { right: 16px; }
-
         .slide-dots {
             position: absolute;
             bottom: 56px;
@@ -868,7 +776,6 @@
             gap: 8px;
             z-index: 2;
         }
-
         .slide-dot {
             width: 8px;
             height: 8px;
@@ -879,12 +786,10 @@
             padding: 0;
             transition: background 0.2s, transform 0.2s;
         }
-
         .slide-dot.active {
             background: var(--white);
             transform: scale(1.2);
         }
-
         /* ═══════════════════════════════════════
            WHY IT MATTERS
            ═══════════════════════════════════════ */
@@ -892,21 +797,18 @@
             padding: var(--section-pad) 0;
             background: var(--white);
         }
-
         .impact-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 32px;
             margin-top: 48px;
         }
-
         .impact-card {
             padding: 32px;
             border-radius: 16px;
             background: var(--teal-50);
             border: 1px solid var(--teal-100);
         }
-
         .impact-card h3 {
             font-family: var(--font-display);
             font-size: 20px;
@@ -914,13 +816,11 @@
             color: var(--teal-900);
             margin-bottom: 10px;
         }
-
         .impact-card p {
             font-size: 15px;
             color: var(--gray-600);
             line-height: 1.65;
         }
-
         .impact-icon {
             width: 48px;
             height: 48px;
@@ -933,7 +833,86 @@
             font-size: 22px;
             box-shadow: 0 2px 8px rgba(10, 61, 82, 0.06);
         }
-
+        /* ═══════════════════════════════════════
+           MEDIA MENTIONS
+           ═══════════════════════════════════════ */
+        .media {
+            padding: var(--section-pad) 0;
+            background: var(--gray-50);
+        }
+        .media-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .media-header .section-body {
+            margin: 0 auto;
+        }
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .media-card {
+            display: block;
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            border-radius: 16px;
+            padding: 32px 28px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            position: relative;
+        }
+        .media-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(10, 61, 82, 0.08);
+            border-color: var(--teal-100);
+        }
+        .media-outlet {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--green-500);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .media-date {
+            color: var(--gray-400);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .media-title {
+            font-family: var(--font-display);
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--teal-900);
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+        .media-excerpt {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+        .media-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--teal-700);
+        }
+        .media-link svg {
+            width: 12px;
+            height: 12px;
+            transition: transform 0.2s;
+        }
+        .media-card:hover .media-link svg {
+            transform: translate(2px, -2px);
+        }
         /* ═══════════════════════════════════════
            CTA / WHERE WE ARE
            ═══════════════════════════════════════ */
@@ -941,7 +920,6 @@
             padding: var(--section-pad) 0;
             background: var(--teal-50);
         }
-
         .cta-card {
             background: var(--white);
             border-radius: 24px;
@@ -951,7 +929,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .cta-card::before {
             content: '';
             position: absolute;
@@ -961,7 +938,6 @@
             height: 4px;
             background: linear-gradient(90deg, var(--teal-700), var(--green-400));
         }
-
         .cta-status {
             display: inline-flex;
             align-items: center;
@@ -974,7 +950,6 @@
             border-radius: 20px;
             margin-bottom: 24px;
         }
-
         .cta-status-dot {
             width: 8px;
             height: 8px;
@@ -982,29 +957,24 @@
             border-radius: 50%;
             animation: pulse 2s ease-in-out infinite;
         }
-
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.4; }
         }
-
         .cta-card .section-heading {
             max-width: 480px;
             margin: 0 auto 16px;
         }
-
         .cta-card .section-body {
             max-width: 500px;
             margin: 0 auto 36px;
         }
-
         .email-form {
             display: flex;
             gap: 10px;
             max-width: 440px;
             margin: 0 auto;
         }
-
         .email-form input {
             flex: 1;
             font-family: var(--font-body);
@@ -1016,16 +986,13 @@
             transition: border-color 0.2s;
             background: var(--gray-50);
         }
-
         .email-form input:focus {
             border-color: var(--teal-500);
             background: var(--white);
         }
-
         .email-form input::placeholder {
             color: var(--gray-400);
         }
-
         /* Honeypot field - hidden from real users, bots will fill it */
         .email-form .hp-field {
             position: absolute;
@@ -1035,21 +1002,17 @@
             opacity: 0;
             pointer-events: none;
         }
-
         .email-form button {
             flex-shrink: 0;
         }
-
         .cta-note {
             font-size: 13px;
             color: var(--gray-400);
             margin-top: 14px;
             min-height: 20px;
         }
-
         .cta-note.success { color: var(--green-500); font-weight: 600; }
         .cta-note.error { color: #c0392b; font-weight: 600; }
-
         /* ═══════════════════════════════════════
            FOOTER
            ═══════════════════════════════════════ */
@@ -1058,7 +1021,6 @@
             background: var(--gray-900);
             color: rgba(255, 255, 255, 0.5);
         }
-
         .footer-inner {
             display: flex;
             align-items: center;
@@ -1066,26 +1028,27 @@
             flex-wrap: wrap;
             gap: 16px;
         }
-
         .footer-logo img {
             height: 32px;
             width: auto;
             opacity: 0.7;
         }
-
         .footer-text {
             font-size: 13px;
             line-height: 1.6;
         }
-
         .footer-text a {
             color: rgba(255, 255, 255, 0.7);
             text-decoration: underline;
             text-underline-offset: 2px;
         }
-
         .footer-text a:hover { color: var(--white); }
-
+        .footer-patent {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
         .footer-acknowledgment {
             font-size: 12px;
             color: rgba(255, 255, 255, 0.35);
@@ -1095,7 +1058,6 @@
             padding-top: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
-
         /* ═══════════════════════════════════════
            RESPONSIVE
            ═══════════════════════════════════════ */
@@ -1104,25 +1066,24 @@
                 grid-template-columns: repeat(3, 1fr);
             }
         }
-
         @media (max-width: 900px) {
             .problem-grid,
             .solution-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-
             .audience-grid,
-            .impact-grid {
+            .impact-grid,
+            .media-grid {
                 grid-template-columns: 1fr;
                 max-width: 480px;
+                margin-left: auto;
+                margin-right: auto;
             }
         }
-
         @media (max-width: 680px) {
             .nav-links { display: none; }
             .mobile-toggle { display: block; }
-
             .nav-links.open {
                 display: flex;
                 flex-direction: column;
@@ -1135,21 +1096,17 @@
                 border-bottom: 1px solid var(--gray-100);
                 box-shadow: 0 8px 32px rgba(0,0,0,0.08);
             }
-
             .email-form {
                 flex-direction: column;
             }
-
             .email-form button {
                 width: 100%;
                 justify-content: center;
             }
-
             .footer-inner {
                 flex-direction: column;
                 text-align: center;
             }
-
             .founders-grid {
                 grid-template-columns: 1fr;
                 max-width: 400px;
@@ -1159,7 +1116,6 @@
     </style>
 </head>
 <body>
-
     <!-- ═══════════════ NAVIGATION ═══════════════ -->
     <nav class="nav" id="nav">
         <div class="nav-inner">
@@ -1174,11 +1130,11 @@
                 <li><a href="#solution">Solution</a></li>
                 <li><a href="#founders">Team</a></li>
                 <li><a href="#story">Our Story</a></li>
+                <li><a href="#media">Press</a></li>
                 <li><a href="#signup" class="nav-cta">Stay Updated</a></li>
             </ul>
         </div>
     </nav>
-
     <!-- ═══════════════ HERO ═══════════════ -->
     <section class="hero">
         <div class="container">
@@ -1186,6 +1142,10 @@
                 <img src="logo.png" alt="DeTICKtor — Detect to Protect">
             </div>
             <h1>A better way to <em>find ticks</em><br> before they cause harm</h1>
+            <div class="patent-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L14 8 L20 8 L15 12 L17 19 L12 15 L7 19 L9 12 L4 8 L10 8 Z"/></svg>
+                Patent Pending
+            </div>
             <p class="hero-sub">
                 DeTICKtor is building a non-invasive screening device that helps animal caregivers detect ticks earlier, faster, and more reliably than manual inspection alone.
             </p>
@@ -1198,7 +1158,6 @@
             </div>
         </div>
     </section>
-
     <!-- ═══════════════ PROBLEM ═══════════════ -->
     <section class="problem" id="problem">
         <div class="container">
@@ -1207,7 +1166,6 @@
             <p class="section-body">
                 Ticks can transmit serious diseases to animals within hours of attachment. Yet for most caregivers, the only screening method available is a slow, manual inspection that often misses what it's looking for.
             </p>
-
             <div class="problem-grid">
                 <div class="problem-cards animate-on-scroll">
                     <div class="problem-card">
@@ -1226,7 +1184,6 @@
                         <p>Missed ticks can lead to tick-borne illnesses that affect the animal's health, complicate shelter operations, and increase the cost and complexity of care.</p>
                     </div>
                 </div>
-
                 <div class="problem-stat-block animate-on-scroll">
                     <div class="stat-item">
                         <div class="stat-number">75%</div>
@@ -1244,13 +1201,11 @@
             </div>
         </div>
     </section>
-
     <!-- ═══════════════ SOLUTION ═══════════════ -->
     <section class="solution" id="solution">
         <div class="container">
             <div class="section-label">The Solution</div>
             <div class="section-heading">Screening that supports<br>the people who care</div>
-
             <div class="solution-content">
                 <div class="solution-text animate-on-scroll">
                     <p>
@@ -1259,7 +1214,6 @@
                     <p>
                         It's not a replacement for veterinary judgment. It's a tool that gives caregivers faster, more consistent screening—so they can act sooner and with greater confidence.
                     </p>
-
                     <div class="solution-features">
                         <div class="solution-feature">
                             <div class="feature-check">
@@ -1287,7 +1241,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="solution-image-wrap animate-on-scroll">
                     <img src="16A22ACA-F9ED-4BC7-8092-618E7E52293B.JPG" alt="DeTICKtor team demonstrating the prototype at Rev Ithaca">
                     <p class="solution-image-caption">The team demonstrating an early prototype at Rev: Ithaca Startup Works</p>
@@ -1295,7 +1248,6 @@
             </div>
         </div>
     </section>
-
     <!-- ═══════════════ WHO IT'S FOR ═══════════════ -->
     <section class="audience" id="audience">
         <div class="container">
@@ -1306,7 +1258,6 @@
                     We're starting where the need is greatest—and where better screening can make the biggest difference.
                 </p>
             </div>
-
             <div class="audience-grid">
                 <div class="audience-card animate-on-scroll">
                     <span class="audience-badge">Primary Focus</span>
@@ -1327,7 +1278,6 @@
             </div>
         </div>
     </section>
-
     <!-- ═══════════════ MEET THE FOUNDERS ═══════════════ -->
     <section class="founders" id="founders">
         <div class="container">
@@ -1338,7 +1288,6 @@
                     It started when Sahana's dog Simba kept coming home with ticks—and the worry that came with each one. She walked into the Cornell Animal Health Hackathon with an idea. By the end of that weekend, the five of us had become a team. That was over a year and a half ago. We haven't stopped since.
                 </p>
             </div>
-
             <div class="founders-grid">
                 <div class="founder-card animate-on-scroll">
                     <div class="founder-photo">
@@ -1346,60 +1295,53 @@
                     </div>
                     <h3>Sahana Kakarla</h3>
                     <span class="founder-degree">M.Eng. Engineering Management '25, Cornell</span>
-                    <p>The one who started it all. Sahana's dog Simba turned her into a tick-checking obsessive—and that obsession became DeTICKtor. A classical dancer, singer, and genuine jack of all trades, she brings big-picture thinking and the kind of drive that turns weekend ideas into real companies.</p>
+                    <p>The one who started it all. Simba turned her into a tick-checking obsessive — and that obsession became DeTICKtor. Brings big-picture thinking and the drive that turns weekend ideas into companies.</p>
                 </div>
-
                 <div class="founder-card animate-on-scroll">
                     <div class="founder-photo">
                         <img src="IMG_0010.png" alt="Ehlaam Imran">
                     </div>
                     <h3>Ehlaam Imran</h3>
                     <span class="founder-degree">M.Eng. Engineering Management '25, Cornell</span>
-                    <p>Jumped in the moment she heard the pitch—and didn't look back. Ehlaam brings structure, strategy, and a sharp eye for what matters. Outside of DeTICKtor, you'll find her deep in a classic novel, yelling at an F1 race, or picking up her fourth language.</p>
+                    <p>Jumped in the moment she heard the pitch and didn't look back. Brings structure, strategy, and a sharp eye for what matters.</p>
                 </div>
-
                 <div class="founder-card animate-on-scroll">
                     <div class="founder-photo">
                         <img src="nilabha.jpeg" alt="Nilabha Mukherjea">
                     </div>
                     <h3>Nilabha Mukherjea</h3>
                     <span class="founder-degree">M.Eng. Biomedical Engineering '25, Cornell</span>
-                    <p>The detail-oriented one! If something needs to be precise, measured, and exactly right—Nilabha's already on it. His biomedical engineering background anchors the team's technical work. When he's not heads-down on the project, he's probably gaming.</p>
+                    <p>The detail-oriented one. If something needs to be precise, measured, and exactly right — Nilabha's already on it. Anchors the team's technical work.</p>
                 </div>
-
                 <div class="founder-card animate-on-scroll">
                     <div class="founder-photo">
                         <img src="vivian.jpeg" alt="Vivian Hu">
                     </div>
                     <h3>Vivian Hu</h3>
                     <span class="founder-degree">B.S. Biomedical Engineering '27, Cornell</span>
-                    <p>Vivian showed up to the same hackathon and clicked with the team instantly. She's the quickest thinker in the room—always ready with a creative angle no one else saw coming. The youngest founder, and often the one pushing the boldest ideas forward.</p>
+                    <p>The quickest thinker in the room — always ready with a creative angle no one else saw coming. Often the one pushing the boldest ideas forward.</p>
                 </div>
-
                 <div class="founder-card animate-on-scroll">
                     <div class="founder-photo">
                         <img src="amy.jpeg" alt="Amy Salim">
                     </div>
                     <h3>Amy Salim</h3>
                     <span class="founder-degree">DVM '28, Cornell College of Veterinary Medicine</span>
-                    <p>The team's animal health expert—and its heart. Amy has always been passionate about animal welfare, and she brings the clinical knowledge that keeps DeTICKtor grounded in real veterinary needs. The warmest person in any room she walks into.</p>
+                    <p>The team's animal health expert. Brings the clinical knowledge that keeps DeTICKtor grounded in real veterinary needs.</p>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- ═══════════════ OUR STORY ═══════════════ -->
     <section class="story" id="story">
         <div class="container">
             <div class="section-label">Our Story</div>
             <div class="section-heading">How DeTICKtor began</div>
-
             <div class="story-intro">
                 <p>
                     DeTICKtor didn't start in a boardroom. It started at a hackathon—a group of students at Cornell University who cared about animal health and saw a gap no one was filling. What began as a weekend project became a mission.
                 </p>
             </div>
-
             <div class="timeline">
                 <div class="timeline-item animate-on-scroll">
                     <div class="timeline-dot"></div>
@@ -1408,21 +1350,18 @@
                     <div class="timeline-desc">Our team formed around a shared observation: there was no fast, reliable, non-invasive way to screen animals for ticks. Over one intense weekend, we built our first concept prototype.</div>
                     <span class="timeline-badge badge-award">🏆 Winning Team — Most Novel &amp; Innovative Animal Health Solution</span>
                 </div>
-
                 <div class="timeline-item animate-on-scroll">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">May – August 2025</div>
                     <div class="timeline-title">Rev: Ithaca Startup Works — Hardware Accelerator</div>
                     <div class="timeline-desc">Selected for Rev's prototyping accelerator, where we developed our concept into a working hardware prototype, conducted early user research with shelters, and began refining our approach.</div>
                 </div>
-
                 <div class="timeline-item animate-on-scroll">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">September – December 2025</div>
                     <div class="timeline-title">Rev Hardware Protofacturing Accelerator</div>
                     <div class="timeline-desc">Continued development through Rev's advanced hardware program, focused on moving from prototype to a design ready for pilot testing in real shelter environments.</div>
                 </div>
-
                 <div class="timeline-item future animate-on-scroll">
                     <div class="timeline-dot"></div>
                     <div class="timeline-date">April 2026</div>
@@ -1431,7 +1370,6 @@
                     <span class="timeline-badge badge-upcoming">Upcoming</span>
                 </div>
             </div>
-
             <div class="slideshow" id="storySlideshow">
                 <div class="slideshow-track">
                     <div class="slide active">
@@ -1461,7 +1399,6 @@
             </div>
         </div>
     </section>
-
     <!-- ═══════════════ WHY IT MATTERS ═══════════════ -->
     <section class="impact" id="impact">
         <div class="container">
@@ -1469,7 +1406,6 @@
                 <div class="section-label">Why It Matters</div>
                 <div class="section-heading">Better screening. Healthier outcomes.</div>
             </div>
-
             <div class="impact-grid">
                 <div class="impact-card animate-on-scroll">
                     <div class="impact-icon">🛡️</div>
@@ -1489,7 +1425,92 @@
             </div>
         </div>
     </section>
-
+    <!-- ═══════════════ MEDIA MENTIONS ═══════════════ -->
+    <section class="media" id="media">
+        <div class="container">
+            <div class="media-header">
+                <div class="section-label">In the News</div>
+                <div class="section-heading">Press &amp; Recognition</div>
+                <p class="section-body">
+                    Coverage of DeTICKtor from Cornell University, Rev: Ithaca Startup Works, and across the hardware ecosystem.
+                </p>
+            </div>
+            <div class="media-grid">
+                <a href="https://www.vet.cornell.edu/about-us/news/20250227/cornell-animal-health-hackathon-2025-solutions-poultry-pathogens-tick-disease-and-more" target="_blank" rel="noopener" class="media-card animate-on-scroll">
+                    <div class="media-outlet">
+                        <span>Cornell CVM</span>
+                        <span class="media-date">Feb 2025</span>
+                    </div>
+                    <div class="media-title">Cornell Animal Health Hackathon 2025: Solutions for poultry pathogens, tick disease and more</div>
+                    <div class="media-excerpt">Cornell College of Veterinary Medicine's official writeup recognizing our team as winners of the "Most Novel &amp; Innovative Animal Health Solution" award.</div>
+                    <span class="media-link">
+                        Read coverage
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    </span>
+                </a>
+                <a href="https://www.revithaca.com/2025-prototyping-cohort-launches-with-momentum/" target="_blank" rel="noopener" class="media-card animate-on-scroll">
+                    <div class="media-outlet">
+                        <span>Rev: Ithaca</span>
+                        <span class="media-date">Summer 2025</span>
+                    </div>
+                    <div class="media-title">2025 Prototyping Cohort Launches with Momentum</div>
+                    <div class="media-excerpt">Featured among Rev: Ithaca Startup Works' summer 2025 prototyping cohort — spotlighted as a hardware-based tick detection tool for animals.</div>
+                    <span class="media-link">
+                        Read announcement
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    </span>
+                </a>
+                <a href="https://crea.cornell.edu/rev-ithaca-startup-works/rev-welcomes-largest-protofacturing-accelerator-cohort-to-date/" target="_blank" rel="noopener" class="media-card animate-on-scroll">
+                    <div class="media-outlet">
+                        <span>Cornell CREA</span>
+                        <span class="media-date">Oct 2025</span>
+                    </div>
+                    <div class="media-title">Rev Welcomes Largest Protofacturing Accelerator Cohort to Date</div>
+                    <div class="media-excerpt">Selected for Rev's Protofacturing Hardware Accelerator — featured as an IR-based scanning tool designed for routine tick checks in pets and vets.</div>
+                    <span class="media-link">
+                        Read announcement
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    </span>
+                </a>
+                <a href="https://hackathon.cornell.edu/animalhealth2025/teams-2025" target="_blank" rel="noopener" class="media-card animate-on-scroll">
+                    <div class="media-outlet">
+                        <span>Cornell Hackathon</span>
+                        <span class="media-date">Feb 2025</span>
+                    </div>
+                    <div class="media-title">Animal Health Hackathon — 2025 Teams</div>
+                    <div class="media-excerpt">Official listing of the 27 competing teams at the ninth annual Cornell Animal Health Hackathon.</div>
+                    <span class="media-link">
+                        View teams
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    </span>
+                </a>
+                <a href="https://aspph.org/cornell-animal-health-hackathon-2025-solutions-for-poultry-pathogens-tick-disease-and-more/" target="_blank" rel="noopener" class="media-card animate-on-scroll">
+                    <div class="media-outlet">
+                        <span>ASPPH</span>
+                        <span class="media-date">Mar 2025</span>
+                    </div>
+                    <div class="media-title">Cornell Animal Health Hackathon 2025: Solutions for Poultry Pathogens, Tick Disease and More</div>
+                    <div class="media-excerpt">Syndicated coverage from the Association of Schools and Programs of Public Health highlighting the hackathon winners.</div>
+                    <span class="media-link">
+                        Read coverage
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    </span>
+                </a>
+                <a href="https://m.youtube.com/watch?v=mNkb_PQHE-g" target="_blank" rel="noopener" class="media-card animate-on-scroll">
+                    <div class="media-outlet">
+                        <span>YouTube</span>
+                        <span class="media-date">Feb 2025</span>
+                    </div>
+                    <div class="media-title">DeTICKtor — Cornell Animal Health Hackathon Pitch</div>
+                    <div class="media-excerpt">Watch our team pitch DeTICKtor at the Cornell Animal Health Hackathon finals.</div>
+                    <span class="media-link">
+                        Watch pitch
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
     <!-- ═══════════════ CTA / WHERE WE ARE ═══════════════ -->
     <section class="cta-section" id="signup">
         <div class="container">
@@ -1512,7 +1533,6 @@
             </div>
         </div>
     </section>
-
     <!-- ═══════════════ FOOTER ═══════════════ -->
     <footer class="footer">
         <div class="container">
@@ -1523,37 +1543,35 @@
                 <div class="footer-text">
                     Questions? Reach us at <a href="mailto:hello@deticktor.com">hello@deticktor.com</a>
                 </div>
+                <div class="footer-patent">
+                    Patent Pending
+                </div>
             </div>
             <div class="footer-acknowledgment">
                 Born at Cornell University · Developed through Rev: Ithaca Startup Works · © 2025 DeTICKtor
             </div>
         </div>
     </footer>
-
     <!-- ═══════════════ SCRIPTS ═══════════════ -->
     <script>
         // ⚠️ PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE ⚠️
         // Get this from: Google Sheet → Extensions → Apps Script → Deploy → New deployment → Web app
         const WAITLIST_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyMF5JFOn5zr0jA-YVj4EUaU54fFr9auB68ZEv808Nsb6mZPMiS3g3AzQrwgjPYyzJd2w/exec';
-
         // Scroll-based nav shadow
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
             nav.classList.toggle('scrolled', window.scrollY > 20);
         });
-
         // Mobile toggle
         const toggle = document.getElementById('mobileToggle');
         const links = document.getElementById('navLinks');
         toggle.addEventListener('click', () => {
             links.classList.toggle('open');
         });
-
         // Close mobile menu on link click
         links.querySelectorAll('a').forEach(a => {
             a.addEventListener('click', () => links.classList.remove('open'));
         });
-
         // Intersection Observer for scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1563,15 +1581,12 @@
                 }
             });
         }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-
         document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-
         // ═══════════════ SLIDESHOW ═══════════════
         function initSlideshow(containerId, dotsId) {
             const container = document.getElementById(containerId);
             const dotsContainer = document.getElementById(dotsId);
             const slides = container.querySelectorAll('.slide');
-
             slides.forEach((_, i) => {
                 const dot = document.createElement('button');
                 dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
@@ -1579,15 +1594,12 @@
                 dot.onclick = () => goToSlide(containerId, i);
                 dotsContainer.appendChild(dot);
             });
-
             container._autoplay = setInterval(() => changeSlide(containerId, 1), 5000);
-
             container.addEventListener('mouseenter', () => clearInterval(container._autoplay));
             container.addEventListener('mouseleave', () => {
                 container._autoplay = setInterval(() => changeSlide(containerId, 1), 5000);
             });
         }
-
         function getCurrentIndex(containerId) {
             const slides = document.getElementById(containerId).querySelectorAll('.slide');
             for (let i = 0; i < slides.length; i++) {
@@ -1595,28 +1607,22 @@
             }
             return 0;
         }
-
         function goToSlide(containerId, index) {
             const container = document.getElementById(containerId);
             const slides = container.querySelectorAll('.slide');
             const dots = container.querySelectorAll('.slide-dot');
-
             slides.forEach(s => s.classList.remove('active'));
             dots.forEach(d => d.classList.remove('active'));
-
             slides[index].classList.add('active');
             dots[index].classList.add('active');
         }
-
         function changeSlide(containerId, direction) {
             const total = document.getElementById(containerId).querySelectorAll('.slide').length;
             const current = getCurrentIndex(containerId);
             let next = (current + direction + total) % total;
             goToSlide(containerId, next);
         }
-
         initSlideshow('storySlideshow', 'storyDots');
-
         // ═══════════════ WAITLIST FORM → GOOGLE SHEETS ═══════════════
         async function handleSubmit(e) {
             e.preventDefault();
@@ -1626,21 +1632,17 @@
             const btn = document.getElementById('waitlistBtn');
             const note = document.getElementById('formNote');
             const email = input.value.trim();
-
             // Honeypot check — if filled, silently "succeed" without submitting
             if (honeypot.value) {
                 btn.textContent = 'Thank you!';
                 input.value = '';
                 return;
             }
-
             if (!email) return;
-
             btn.disabled = true;
             btn.textContent = 'Submitting...';
             note.className = 'cta-note';
             note.textContent = 'Sending...';
-
             try {
                 await fetch(WAITLIST_SCRIPT_URL, {
                     method: 'POST',
@@ -1652,14 +1654,12 @@
                         timestamp: new Date().toISOString()
                     })
                 });
-
                 // no-cors means we can't read the response, but if fetch didn't throw, it worked
                 btn.textContent = 'Thank you!';
                 btn.style.background = 'var(--green-500)';
                 input.value = '';
                 note.className = 'cta-note success';
                 note.textContent = "You're on the list! We'll be in touch.";
-
                 setTimeout(() => {
                     btn.textContent = 'Join Waitlist';
                     btn.style.background = '';
